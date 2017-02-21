@@ -18,7 +18,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="70dp"
         android:id="@+id/loginButton"
-        android:onClick="onClickLogin"/>
+        android:onClick="onClickLogin"
+        android:backgroundTint="@color/colorAccent" />
 
 
     <TextView
@@ -27,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="77dp"
         android:id="@+id/textView3"
-        android:layout_alignBottom="@+id/editText"
+        android:layout_alignBottom="@+id/usernameEditText"
         android:layout_centerHorizontal="true"
         android:fontFamily="casual" />
 
@@ -36,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView4"
-        android:layout_below="@+id/editText"
+        android:layout_below="@+id/usernameEditText"
         android:layout_alignLeft="@+id/textView3"
         android:layout_alignStart="@+id/textView3"
         android:layout_marginTop="42dp"
@@ -48,7 +49,7 @@
         android:inputType="textPersonName"
         android:text="your password is..."
         android:ems="10"
-        android:id="@+id/editText2"
+        android:id="@+id/passwordEditText"
         android:layout_below="@+id/textView4"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="33dp" />
@@ -61,7 +62,8 @@
         android:fontFamily="casual"
         android:textSize="30sp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/holo_purple" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -69,11 +71,11 @@
         android:inputType="textPersonName"
         android:text="your username is..."
         android:ems="10"
-        android:id="@+id/editText"
+        android:id="@+id/usernameEditText"
         android:layout_marginTop="103dp"
         android:layout_below="@+id/textView"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2" />
+        android:layout_alignLeft="@+id/passwordEditText"
+        android:layout_alignStart="@+id/passwordEditText" />
 
     <Button
         android:text="Cancel"
@@ -84,5 +86,6 @@
         android:onClick="onCancelClick"
         android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/loginButton"
-        android:layout_alignStart="@+id/loginButton" />
+        android:layout_alignStart="@+id/loginButton"
+        android:backgroundTint="?attr/colorButtonNormal" />
 </RelativeLayout>
