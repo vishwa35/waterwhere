@@ -13,8 +13,11 @@
     tools:context="com.gitatme.waterwhere.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+
+    <Button
+        android:layout_width="400px"
+        android:layout_height="150px"
+        android:layout_centerInParent="true"
+        android:text="Logout"
+        android:onClick="logout"/>
 </RelativeLayout>
