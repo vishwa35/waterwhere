@@ -11,13 +11,15 @@
     tools:context="com.gitatme.waterwhere.LoginActivity">
 
     <Button
-        android:text="Button"
+        android:text="Login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="51dp"
-        android:id="@+id/button" />
+        android:layout_marginBottom="70dp"
+        android:id="@+id/loginButton"
+        android:onClick="onClickLogin"/>
+
 
     <TextView
         android:text="Enter your username:"
@@ -72,4 +74,15 @@
         android:layout_below="@+id/textView"
         android:layout_alignLeft="@+id/editText2"
         android:layout_alignStart="@+id/editText2" />
+
+    <Button
+        android:text="Cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cancelButton"
+        android:layout_marginBottom="12dp"
+        android:onClick="onCancelClick"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/loginButton"
+        android:layout_alignStart="@+id/loginButton" />
 </RelativeLayout>
