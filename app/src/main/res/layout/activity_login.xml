@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView"
         android:fontFamily="casual"
-        android:textSize="30sp"
+        android:textSize="24sp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:textColor="@android:color/holo_purple" />

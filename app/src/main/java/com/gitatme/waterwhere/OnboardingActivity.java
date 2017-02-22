@@ -1,6 +1,7 @@
 package com.gitatme.waterwhere;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -22,6 +23,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class OnboardingActivity extends IntroActivity {
+    @Override
+    public void finish() {
+        Intent loginIntent = new Intent(this, LoginActivity.class);
+        startActivity(loginIntent);
+        super.finish();
+    }
 
     private static final float[] ANIMATION_TIMES = new float[]{
             0f,
