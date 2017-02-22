@@ -62,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onCancelClick(View view) {
-        //if cancel is pressed, simply go back to the onboarding screen
+        Intent intent = new Intent(LoginActivity.this, OnboardingActivity.class);
+        startActivity(intent);
     }
 }
