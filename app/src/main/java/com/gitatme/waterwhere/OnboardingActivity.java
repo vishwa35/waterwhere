@@ -25,7 +25,7 @@ import java.util.Collection;
 public class OnboardingActivity extends IntroActivity {
     @Override
     public void finish() {
-        Intent loginIntent = new Intent(this, LoginActivity.class);
+        Intent loginIntent = new Intent(this, MainActivity.class);
         startActivity(loginIntent);
         super.finish();
     }

@@ -40,6 +40,9 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             if (usernameEditText.getText().toString().equals(USERNAME)
                     && passwordEditText.getText().toString().equals(PASSWORD)) {
+                //User will be logged in
+                SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.shared_pref_code), Context.MODE_PRIVATE);
+                sharedPreferences.edit().putBoolean(getString(R.string.shared_pref_loggedin), true).apply();
                 Intent loginSuccessful = new Intent(this,
                         MainActivity.class);
                 startActivity(loginSuccessful);
@@ -59,5 +62,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onCancelClick(View view) {
+        //if cancel is pressed, simply go back to the onboarding screen
     }
 }
