@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Logs out the user from the system and sets the boolean flag to false
+     *
+     * @param view
+     */
     public void logout(View view) {
         SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.shared_pref_code), Context.MODE_PRIVATE);
         sharedPreferences.edit().putBoolean(getString(R.string.shared_pref_loggedin), false).apply();
@@ -55,9 +61,27 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * Starts a new activity for the user to change the profile information
+     *
+     * @param view
+     */
     public void onClickEditProfile(View view) {
         Intent profileIntent = new Intent(this, ProfileActivity.class);
         final int result = 1;
         startActivityForResult(profileIntent, result);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (data.getStringExtra("Result").equals("Success")) {
+            Toast.makeText(this, "Changes were successfully made to your profile",
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Changes were discarded",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 }

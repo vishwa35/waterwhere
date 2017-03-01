@@ -74,9 +74,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Email"
+                android:text="Password"
                 android:layout_alignParentLeft="true"
-                android:layout_below="@+id/editTextName"
+                android:layout_below="@+id/editTextEmail"
                 android:layout_marginTop="10dp"/>
 
             <EditText
@@ -89,6 +89,14 @@
                 android:layout_marginTop="10dp"
                 android:id="@+id/editTextPass" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Confirm Password"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/editTextPass"
+                android:layout_marginTop="10dp"/>
+
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -98,6 +106,14 @@
                 android:layout_below="@+id/editTextPass"
                 android:layout_marginTop="10dp"
                 android:id="@+id/editTextConfirmPass" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/editTextConfirmPass"
+                android:layout_marginTop="10dp"/>
 
             <EditText
                 android:layout_width="wrap_content"
@@ -109,6 +125,14 @@
                 android:layout_marginTop="10dp"
                 android:id="@+id/editTextAddress" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/editTextAddress"
+                android:layout_marginTop="10dp"/>
+
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -118,6 +142,14 @@
                 android:layout_below="@+id/editTextAddress"
                 android:layout_marginTop="10dp"
                 android:id="@+id/editTextPhone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Account Type"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/editTextPhone"
+                android:layout_marginTop="10dp"/>
 
             <Spinner
                 android:id="@+id/spinnerAccountType"
@@ -133,10 +165,22 @@
                 android:text="Submit Changes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/button"
+                android:id="@+id/submitButton"
                 android:layout_below="@+id/spinnerAccountType"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="15dp" />
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="15dp"
+                android:onClick="onClickSubmit"/>
+
+            <Button
+                android:text="Cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cancelButton"
+                android:layout_below="@+id/spinnerAccountType"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="15dp"
+                android:onClick="onClickCancel"/>
+
 
 
         </RelativeLayout>
