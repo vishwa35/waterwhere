@@ -54,4 +54,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    public void onClickEditProfile(View view) {
+        Intent profileIntent = new Intent(this, ProfileActivity.class);
+        final int result = 1;
+        startActivityForResult(profileIntent, result);
+    }
 }
