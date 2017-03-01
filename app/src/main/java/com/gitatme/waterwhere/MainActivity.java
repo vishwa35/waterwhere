@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.shared_pref_code), Context.MODE_PRIVATE);
         boolean isLoggedIn = sharedPreferences.getBoolean(getString(R.string.shared_pref_loggedin), false);
         if(!isLoggedIn) {
-            Intent intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(this, OnboardingActivity.class);
             startActivity(intent);
             //finish();
         }

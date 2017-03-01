@@ -11,8 +11,7 @@
         <activity
             android:name=".OnboardingActivity"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
-        </activity>
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -23,7 +22,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".LoginActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.LoginActivity" />
     </application>
 
 </manifest>

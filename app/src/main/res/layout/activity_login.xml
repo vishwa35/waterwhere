@@ -1,91 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@android:color/white"
     tools:context="com.gitatme.waterwhere.LoginActivity">
 
-    <Button
-        android:text="Login"
-        android:layout_width="wrap_content"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="70dp"
-        android:id="@+id/loginButton"
-        android:onClick="onClickLogin"
-        android:backgroundTint="@color/colorAccent" />
+        app:tabMode="fixed"
+        app:tabGravity="fill" />
+
+    <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="net.voidynullness.android.tabitytabs.TabLayoutActivity">
+
+    </android.support.v4.view.ViewPager>
+
+    <!--<Button-->
+        <!--android:text="Login"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginBottom="70dp"-->
+        <!--android:id="@+id/loginButton"-->
+        <!--android:onClick="onClickLogin"-->
+        <!--android:backgroundTint="@color/colorAccent" />-->
 
 
-    <TextView
-        android:text="Enter your username:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="77dp"
-        android:id="@+id/textView3"
-        android:layout_alignBottom="@+id/usernameEditText"
-        android:layout_centerHorizontal="true"
-        android:fontFamily="casual" />
+    <!--<TextView-->
+        <!--android:text="Enter your username:"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginBottom="77dp"-->
+        <!--android:id="@+id/textView3"-->
+        <!--android:layout_alignBottom="@+id/usernameEditText"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:fontFamily="casual" />-->
 
-    <TextView
-        android:text="Enter your password:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView4"
-        android:layout_below="@+id/usernameEditText"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_alignStart="@+id/textView3"
-        android:layout_marginTop="42dp"
-        android:fontFamily="casual" />
+    <!--<TextView-->
+        <!--android:text="Enter your password:"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/textView4"-->
+        <!--android:layout_below="@+id/usernameEditText"-->
+        <!--android:layout_alignLeft="@+id/textView3"-->
+        <!--android:layout_alignStart="@+id/textView3"-->
+        <!--android:layout_marginTop="42dp"-->
+        <!--android:fontFamily="casual" />-->
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="your password is..."
-        android:ems="10"
-        android:id="@+id/passwordEditText"
-        android:layout_below="@+id/textView4"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="33dp" />
+    <!--<EditText-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:inputType="textPersonName"-->
+        <!--android:text="your password is..."-->
+        <!--android:ems="10"-->
+        <!--android:id="@+id/passwordEditText"-->
+        <!--android:layout_below="@+id/textView4"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="33dp" />-->
 
-    <TextView
-        android:text="Get yourself logged in!"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView"
-        android:fontFamily="casual"
-        android:textSize="24sp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:textColor="@android:color/holo_purple" />
+    <!--<TextView-->
+        <!--android:text="Get yourself logged in!"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/textView"-->
+        <!--android:fontFamily="casual"-->
+        <!--android:textSize="24sp"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:textColor="@android:color/holo_purple" />-->
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="your username is..."
-        android:ems="10"
-        android:id="@+id/usernameEditText"
-        android:layout_marginTop="103dp"
-        android:layout_below="@+id/textView"
-        android:layout_alignLeft="@+id/passwordEditText"
-        android:layout_alignStart="@+id/passwordEditText" />
+    <!--<EditText-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:inputType="textPersonName"-->
+        <!--android:text="your username is..."-->
+        <!--android:ems="10"-->
+        <!--android:id="@+id/usernameEditText"-->
+        <!--android:layout_marginTop="103dp"-->
+        <!--android:layout_below="@+id/textView"-->
+        <!--android:layout_alignLeft="@+id/passwordEditText"-->
+        <!--android:layout_alignStart="@+id/passwordEditText" />-->
 
-    <Button
-        android:text="Cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/cancelButton"
-        android:layout_marginBottom="12dp"
-        android:onClick="onCancelClick"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/loginButton"
-        android:layout_alignStart="@+id/loginButton"
-        android:backgroundTint="?attr/colorButtonNormal" />
+    <!--<Button-->
+        <!--android:text="Cancel"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/cancelButton"-->
+        <!--android:layout_marginBottom="12dp"-->
+        <!--android:onClick="onCancelClick"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignLeft="@+id/loginButton"-->
+        <!--android:layout_alignStart="@+id/loginButton"-->
+        <!--android:backgroundTint="?attr/colorButtonNormal" />-->
 </RelativeLayout>
