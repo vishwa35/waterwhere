@@ -68,6 +68,7 @@
             android:gravity="center">
 
             <Button
+                android:id="@+id/login_button_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/Widget.AppCompat.Button.Borderless.Colored"
@@ -77,6 +78,7 @@
                 android:layout_margin="5dp"/>
 
             <Button
+                android:id="@+id/login_button_cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/Widget.AppCompat.Button.Borderless"
