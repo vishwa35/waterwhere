@@ -5,4 +5,5 @@
     <color name="colorAccent">#16a085</color>
 
     <color name="onboarding">#2980b9</color>
+    <color name="darker_transparent">#49000000</color>
 </resources>
