@@ -126,6 +126,17 @@ public class ProfileActivity extends Activity {
                     })
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
+        } else if (passEditText.getText().toString().length() < 8) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Passwords is too short")
+                    .setMessage("Your password must be at least 8 characters long. Please reenter a longer password.")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // do nothing
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
         } else {
             SharedPreferences.Editor sharedPreferences = getSharedPreferences(getString(R.string.shared_pref_code), Context.MODE_PRIVATE).edit();
             sharedPreferences.putString(getString(R.string.shared_pref_name), nameEditText.getText().toString());
