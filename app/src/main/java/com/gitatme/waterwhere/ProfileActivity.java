@@ -29,6 +29,8 @@ public class ProfileActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_profile);
+
         nameEditText = (EditText) findViewById(R.id.editTextName);
         emailEditText = (EditText) findViewById(R.id.editTextEmail);
         passEditText = (EditText) findViewById(R.id.editTextPass);
@@ -38,44 +40,30 @@ public class ProfileActivity extends Activity {
         accountTypeSpinner = (Spinner) findViewById(R.id.spinnerAccountType);
 
         SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.shared_pref_code), Context.MODE_PRIVATE);
-        String name = sharedPreferences.getString(getString(R.string.shared_pref_name), null);
-        String email = sharedPreferences.getString(getString(R.string.shared_pref_email), null);
-        String pass = sharedPreferences.getString(getString(R.string.shared_pref_pass), null);
-        String address = sharedPreferences.getString(getString(R.string.shared_pref_address), null);
-        String phone = sharedPreferences.getString(getString(R.string.shared_pref_phone), null);
-        String accountType = sharedPreferences.getString(getString(R.string.shared_pref_type), null);
+        String name = sharedPreferences.getString(getString(R.string.shared_pref_name), "");
+        String email = sharedPreferences.getString(getString(R.string.shared_pref_email), "");
+        String pass = sharedPreferences.getString(getString(R.string.shared_pref_pass), "");
+        String address = sharedPreferences.getString(getString(R.string.shared_pref_address), "");
+        String phone = sharedPreferences.getString(getString(R.string.shared_pref_phone), "");
+        String accountType = sharedPreferences.getString(getString(R.string.shared_pref_type), "");
 
-        if (name != null) {
             nameEditText.setText(name);
-        }
-
-        if (email != null) {
             emailEditText.setText(email);
-        }
-        if (pass != null) {
             passEditText.setText(pass);
             confirmPassEditText.setText(pass);
-        }
-        if (address != null) {
             addressEditText.setText(address);
-        }
-        if (phone != null) {
             phoneEditText.setText(phone);
-        }
 
+            if (accountType.toLowerCase().trim().equals("user")) {
+                accountTypeSpinner.setSelection(0);
+            } else if (accountType.toLowerCase().trim().equals("worker")) {
+                accountTypeSpinner.setSelection(1);
+            } else if (accountType.toLowerCase().trim().equals("manager")) {
+                accountTypeSpinner.setSelection(2);
+            } else if (accountType.toLowerCase().trim().equals("admin")) {
+                accountTypeSpinner.setSelection(3);
+            }
 
-        if (accountType.toLowerCase().trim().equals("user")) {
-            accountTypeSpinner.setSelection(0);
-        } else if (accountType.toLowerCase().trim().equals("worker")) {
-            accountTypeSpinner.setSelection(1);
-        } else if (accountType.toLowerCase().trim().equals("manager")) {
-            accountTypeSpinner.setSelection(2);
-        } else if (accountType.toLowerCase().trim().equals("admin")) {
-            accountTypeSpinner.setSelection(3);
-        }
-
-
-        setContentView(R.layout.activity_profile);
     }
 
     /**
