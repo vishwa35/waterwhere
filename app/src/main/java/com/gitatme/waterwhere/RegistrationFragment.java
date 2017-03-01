@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -40,6 +42,7 @@ public class RegistrationFragment extends Fragment {
     Spinner type;
     Button register;
     Button cancel;
+    private static ArrayList<User> registeredUsers = new ArrayList<>();
 
     public RegistrationFragment() {
         // Required empty public constructor
@@ -86,6 +89,10 @@ public class RegistrationFragment extends Fragment {
         return view;
     }
 
+    /**
+     * If inputs are valid, the user is registered and his or her credentials and information are saved.
+     * Launches MainActivity.
+     */
     public void registerUser() {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(getString(R.string.shared_pref_code), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -96,7 +103,17 @@ public class RegistrationFragment extends Fragment {
         editor.putString(getString(R.string.shared_pref_phone), phone.getText().toString().trim());
         editor.putString(getString(R.string.shared_pref_type), type.getSelectedItem().toString());
         editor.putBoolean(getString(R.string.shared_pref_loggedin), true);
+
         editor.commit();
+
+        User newUser = new User(name.getText().toString().trim(), email.getText().toString().trim(),
+                phone.getText().toString().trim(), pass.getText().toString().trim(), address.getText().toString().trim(),
+                type.getSelectedItem().toString());
+        registeredUsers.add(newUser);
+        for (User user: registeredUsers) {
+            Log.e("User: ", user.toString());
+        }
+
         Intent mainactivity = new Intent(getActivity(), MainActivity.class);
         startActivity(mainactivity);
         getActivity().finish();
