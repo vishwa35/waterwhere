@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         if(!isLoggedIn) {
             Intent intent = new Intent(this, OnboardingActivity.class);
             startActivity(intent);
-            //finish();
+            finish();
         }
     }
 

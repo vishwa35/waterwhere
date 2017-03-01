@@ -20,8 +20,28 @@
     <string name="login_textview">Login</string>
     <string name="login_edittext_email">Email</string>
     <string name="login_edittext_pass">Password</string>
-    <string name="login_button_login">Login</string>
+    <string name="login_button_login">Sign In</string>
     <string name="login_button_cancel">Cancel</string>
+    <string name="registration_textview">Registration</string>
+    <string name="register_button_login">Sign Up</string>
+    <string name="register_button_cancel">Cancel</string>
+    <string name="register_edittext_email">Email</string>
+    <string name="register_edittext_pass">Password</string>
+    <string name="register_edittext_confirmpass">Confirm Password</string>
+    <string name="register_edittext_name">Name</string>
+    <string name="register_edittext_address">Home Address</string>
+    <string name="register_edittext_type">Account Type</string>
+    <string name="register_edittext_phone">Phone Number</string>
+    <string name="register_textinputlayout_email_empty">Cannot leave email empty</string>
+    <string name="register_textinputlayout_email_invalid">Not a valid email address</string>
+    <string name="register_textinputlayout_pass_empty">Cannot leave pass empty</string>
+    <string name="register_textinputlayout_pass_length">Must be at least 8 characters</string>
+    <string name="register_textinputlayout_confirmpass_empty">Cannot leave email empty</string>
+    <string name="register_textinputlayout_confirmpass_match">Does not match password</string>
+    <string name="register_textinputlayout_name_empty">Cannot leave name empty</string>
+    <string name="register_textinputlayout_address_empty">Cannot leave address empty</string>
+    <string name="register_textinputlayout_phone_empty">Cannot leave phone number empty</string>
+    <string name="register_textinputlayout_phone_invalid">Not a valid phone number</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
