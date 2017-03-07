@@ -1,4 +1,4 @@
-package com.gitatme.waterwhere;
+package com.gitatme.waterwhere.view;
 
 
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+
+import com.gitatme.waterwhere.R;
 
 
 /**

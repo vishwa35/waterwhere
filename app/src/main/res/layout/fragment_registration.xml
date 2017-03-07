@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.gitatme.waterwhere.RegistrationFragment">
+    tools:context="com.gitatme.waterwhere.view.RegistrationFragment">
 
     <TextView
         android:id="@+id/registration_textview"

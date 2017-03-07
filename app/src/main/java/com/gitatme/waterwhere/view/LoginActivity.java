@@ -1,4 +1,4 @@
-package com.gitatme.waterwhere;
+package com.gitatme.waterwhere.view;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -12,6 +12,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.gitatme.waterwhere.R;
+import com.gitatme.waterwhere.controller.TabsPagerAdapter;
 
 public class LoginActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.gitatme.waterwhere;
+package com.gitatme.waterwhere.model;
 
 /**
  * Created by shuka on 3/1/2017.

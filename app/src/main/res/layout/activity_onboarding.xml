@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/onboarding"
-    tools:context="com.gitatme.waterwhere.OnboardingActivity">
+    tools:context="com.gitatme.waterwhere.view.OnboardingActivity">
 
     <View
         android:id="@+id/statusBarBackground"

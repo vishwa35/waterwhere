@@ -1,8 +1,11 @@
-package com.gitatme.waterwhere;
+package com.gitatme.waterwhere.controller;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.gitatme.waterwhere.view.LoginFragment;
+import com.gitatme.waterwhere.view.RegistrationFragment;
 
 /**
  * Created by binitshah on 3/1/17.
