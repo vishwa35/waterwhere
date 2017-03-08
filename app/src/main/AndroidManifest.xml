@@ -26,6 +26,7 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.LoginActivity" />
         <activity android:name=".view.ProfileActivity" />
+        <activity android:name=".view.WaterReportActivity" />
     </application>
 
 </manifest>

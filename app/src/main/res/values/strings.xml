@@ -55,4 +55,21 @@
         <item>Manager</item>
         <item>Admin</item>
     </string-array>
+
+    <!--WaterReportActivity-->
+    <string-array name="water_types">
+        <item>Bottled</item>
+        <item>Well</item>
+        <item>Stream</item>
+        <item>Lake</item>
+        <item>Spring</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="water_conditions">
+        <item>Waste</item>
+        <item>Treatable-Clear</item>
+        <item>Treatable-Muddy</item>
+        <item>Potable</item>
+    </string-array>
 </resources>

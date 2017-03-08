@@ -63,6 +63,12 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
+    public void onClickReport(View view) {
+        Intent reportIntent = new Intent(this, WaterReportActivity.class);
+        final int result = 2;
+        startActivityForResult(reportIntent, result);
+    }
+
     /**
      * Starts a new activity for the user to change the profile information
      *
@@ -77,13 +83,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if (data.getStringExtra("Result").equals("Success")) {
-            Toast.makeText(this, "Changes were successfully made to your profile",
-                    Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Changes were discarded",
-                    Toast.LENGTH_SHORT).show();
+        if (requestCode == 1) {
+            if (data.getStringExtra("Result").equals("Success")) {
+                Toast.makeText(this, "Changes were successfully made to your profile",
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Changes were discarded",
+                        Toast.LENGTH_SHORT).show();
+            }
         }
+        if (requestCode == 2) {
+            // if water report added, make a success toast
+            // if canceled, notify user through toast
+        }
+
     }
 }
