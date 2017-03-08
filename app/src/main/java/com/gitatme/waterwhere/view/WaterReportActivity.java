@@ -2,17 +2,21 @@ package com.gitatme.waterwhere.view;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gitatme.waterwhere.R;
 import com.gitatme.waterwhere.model.WaterReport;
+import com.google.gson.Gson;
 
 import java.util.Random;
 
@@ -68,6 +72,26 @@ public class WaterReportActivity extends Activity {
                         waterConditionSpinner.getSelectedItem().toString());
 
         //vishwa - store waterReport in sharedpref
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String jsonReport = gson.toJson(waterReport);
+        editor.putString("waterReport", jsonReport);
+        editor.commit();
+
+        String json = sharedPreferences.getString("waterReport", "");
+        if (json != null) {
+            Toast.makeText(this, "Report Added", Toast.LENGTH_SHORT).show();
+        }
+
+        //code to retreive WaterReport object:
+        //Gson gson = new Gson();
+        //String json = sharedPreferences.getString("waterReport", "");
+        //WaterReport obj = gson.fromJson(json, WaterReport.class);
+
+        Intent mainActivity = new Intent(this, MainActivity.class);
+        startActivity(mainActivity);
+
     }
 
     public void onClickCancel(View view) {
