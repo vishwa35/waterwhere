@@ -97,5 +97,8 @@ public class WaterReportActivity extends Activity {
     public void onClickCancel(View view) {
         //Aditya
         //Send back to Main Activity and notify via toast that changes were canceled
+        Toast.makeText(this, "Report Canceled", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }
