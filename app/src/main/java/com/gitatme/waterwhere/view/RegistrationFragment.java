@@ -1,4 +1,4 @@
-package com.gitatme.waterwhere;
+package com.gitatme.waterwhere.view;
 
 
 import android.content.Context;
@@ -15,6 +15,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+
+import com.gitatme.waterwhere.R;
+import com.gitatme.waterwhere.model.User;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;

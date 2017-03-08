@@ -1,4 +1,4 @@
-package com.gitatme.waterwhere;
+package com.gitatme.waterwhere.view;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.gitatme.waterwhere.R;
 
 /**
  * Created by shuka on 3/1/2017.

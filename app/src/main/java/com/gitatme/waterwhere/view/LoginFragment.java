@@ -1,4 +1,4 @@
-package com.gitatme.waterwhere;
+package com.gitatme.waterwhere.view;
 
 
 import android.content.Context;
@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.gitatme.waterwhere.R;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -9,11 +9,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".OnboardingActivity"
+            android:name=".view.OnboardingActivity"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
-            android:name=".MainActivity"
+            android:name=".view.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
@@ -22,10 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity"
+        <activity android:name=".view.LoginActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.LoginActivity" />
-        <activity android:name=".ProfileActivity" />
+        <activity android:name=".view.ProfileActivity" />
     </application>
 
 </manifest>
