@@ -1,7 +1,7 @@
 package com.gitatme.waterwhere.model;
 
 /**
- * Created by shuka on 3/1/2017.
+ * Created by Shukan Shah on 3/1/2017.
  */
 
 public class User {
@@ -24,7 +24,7 @@ public class User {
 
     /**
      * getter for email attribute
-     * @return
+     * @return email
      */
     public String getEmail() {
         return email;
@@ -32,7 +32,7 @@ public class User {
 
     /**
      * getter for name attribute
-     * @return
+     * @return name
      */
     public String getName() {
         return name;
@@ -40,7 +40,7 @@ public class User {
 
     /**
      * getter for pass attribute
-     * @return
+     * @return pass
      */
     public String getPass() {
         return pass;
@@ -48,7 +48,7 @@ public class User {
 
     /**
      * getter for phone attribute
-     * @return
+     * @return phone
      */
     public String getPhone() {
         return phone;
@@ -56,7 +56,7 @@ public class User {
 
     /**
      * getter for address attribute
-     * @return
+     * @return address
      */
     public String getAddress() {
         return address;
@@ -64,7 +64,7 @@ public class User {
 
     /**
      * getter for accountType attribute
-     * @return
+     * @return accountType
      */
     public String getAccountType() {
         return accountType;
