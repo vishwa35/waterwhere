@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
      * Starts activity to show past water reports.
      */
     public void viewAllReports() {
-        
+
         Intent waterReportViewActivity = new Intent(this, ViewWaterReportActivity.class);
         startActivity(waterReportViewActivity);
 

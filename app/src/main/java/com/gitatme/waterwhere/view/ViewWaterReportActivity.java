@@ -28,7 +28,13 @@ public class ViewWaterReportActivity extends AppCompatActivity {
 //        Toast.makeText(this, obj1.toString(), Toast.LENGTH_SHORT).show();
 
         TextView reportText = (TextView)findViewById(R.id.existingReport);
-        reportText.setText(obj1.toString());
+
+        if (obj1 != null) {
+            reportText.setText(obj1.getUserID() + " | " + obj1.getDatetime() + " | " + obj1.getLocation());
+        } else {
+            reportText.setText("You have not yet added any reports");
+        }
+
     }
 
 }
