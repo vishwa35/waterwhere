@@ -121,9 +121,9 @@ public class MainActivity extends AppCompatActivity {
      * Starts activity to show available water sources.
      */
     public void showAvailableWater() {
-        Intent reportIntent = new Intent(this, WaterReportActivity.class);
-        final int result = 2;
-        startActivityForResult(reportIntent, result);
+        Intent waterAvailabilityIntent = new Intent(this, WaterAvailabilityActivity.class);
+        final int result = 3;
+        startActivityForResult(waterAvailabilityIntent, result);
     }
 
     /**

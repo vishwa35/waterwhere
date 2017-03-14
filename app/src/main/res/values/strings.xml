@@ -75,4 +75,5 @@
     <string name="title_activity_water_report_view">WaterReportViewActivity</string>
     <string name="title_activity_view_water_report">ViewWaterReportActivity</string>
     <string name="textview">TextView</string>
+    <string name="title_activity_water_availability">Water Availability</string>
 </resources>
