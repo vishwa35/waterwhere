@@ -16,11 +16,21 @@
     <Button
         android:layout_width="400px"
         android:layout_height="150px"
-        android:layout_above="@+id/reportButton"
+        android:layout_above="@+id/viewReportButton"
         android:text="Edit Profile"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="15dp"
         android:onClick="onClickEditProfile"/>
+
+    <Button
+        android:layout_width="400px"
+        android:layout_height="150px"
+        android:layout_above="@+id/reportButton"
+        android:text="View Water Reports"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:onClick="onClickViewReport"
+        android:id="@+id/viewReportButton"/>
 
     <Button
         android:layout_width="400px"
