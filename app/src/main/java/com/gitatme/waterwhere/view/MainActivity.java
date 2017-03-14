@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.Toast;
 import android.widget.TextView;
 
@@ -24,6 +25,12 @@ import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
+    Button editProfileButton;
+    Button newWaterReportButton;
+    Button showAvailableWaterButton;
+    Button showAllReportsButton;
+    Button logoutButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +38,41 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        editProfileButton = (Button) findViewById(R.id.editProfileButton);
+        editProfileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editProfile();
+            }
+        });
+        newWaterReportButton = (Button) findViewById(R.id.newWaterReportButton);
+        newWaterReportButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createWaterReport();
+            }
+        });
+        showAvailableWaterButton = (Button) findViewById(R.id.showAvailableWaterButton);
+        showAvailableWaterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAvailableWater();
+            }
+        });
+        showAllReportsButton = (Button) findViewById(R.id.showAllReportsButton);
+        showAllReportsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewAllReports();
+            }
+        });
+        logoutButton = (Button) findViewById(R.id.logoutButton);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout();
+            }
+        });
 
         //Check if user is logged in, and if not, send them to Onboarding
         SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.shared_pref_code), Context.MODE_PRIVATE);
@@ -58,25 +100,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Logs out the user from the system and sets the boolean flag to false
-     *
-     * @param view
+     * Starts a new activity for the user to change the profile information
      */
-    public void logout(View view) {
-        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.shared_pref_code), Context.MODE_PRIVATE);
-        sharedPreferences.edit().putBoolean(getString(R.string.shared_pref_loggedin), false).apply();
-        Intent intent = new Intent(this, OnboardingActivity.class);
-        startActivity(intent);
-        finish();
+    public void editProfile() {
+        Intent profileIntent = new Intent(this, ProfileActivity.class);
+        final int result = 1;
+        startActivityForResult(profileIntent, result);
     }
 
-    public void onClickReport(View view) {
+    /**
+     * Starts activity to create a new water report.
+     */
+    public void createWaterReport() {
         Intent reportIntent = new Intent(this, WaterReportActivity.class);
         final int result = 2;
         startActivityForResult(reportIntent, result);
     }
 
-    public void onClickViewReport(View view) {
+    /**
+     * Starts activity to show available water sources.
+     */
+    public void showAvailableWater() {
+        Intent reportIntent = new Intent(this, WaterReportActivity.class);
+        final int result = 2;
+        startActivityForResult(reportIntent, result);
+    }
+
+    /**
+     * Starts activity to show past water reports.
+     */
+    public void viewAllReports() {
         Gson gson = new Gson();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -99,14 +152,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Starts a new activity for the user to change the profile information
-     *
-     * @param view
+     * Logs out the user from the system and sets the boolean flag to false
      */
-    public void onClickEditProfile(View view) {
-        Intent profileIntent = new Intent(this, ProfileActivity.class);
-        final int result = 1;
-        startActivityForResult(profileIntent, result);
+    public void logout() {
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.shared_pref_code), Context.MODE_PRIVATE);
+        sharedPreferences.edit().putBoolean(getString(R.string.shared_pref_loggedin), false).apply();
+        Intent intent = new Intent(this, OnboardingActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override

@@ -16,38 +16,34 @@
     tools:showIn="@layout/activity_main">
 
     <Button
+        android:id="@+id/editProfileButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Edit Profile"
-        android:onClick="onClickEditProfile"/>
+        android:text="Edit Profile" />
 
     <Button
+        android:id="@+id/newWaterReportButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create New Water Report"
-        android:id="@+id/reportButton"
-        android:onClick="onClickReport" />
+        android:text="Create New Water Report" />
 
     <Button
+        android:id="@+id/showAvailableWaterButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Show Available Water Sources"
-        android:id="@+id/waterAvailabilityButton"
-        android:onClick="onClickWaterAvailability" />
+        android:text="Show Available Water Sources" />
 
     <Button
+        android:id="@+id/showAllReportsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="View All Reports"
-        android:id="@+id/viewWaterReportsButton"
-        android:onClick="onClickViewReport" />
+        android:text="View All Reports" />
 
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Logout"
         android:id="@+id/logoutButton"
-        android:onClick="logout"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout" />
 
 </LinearLayout>
