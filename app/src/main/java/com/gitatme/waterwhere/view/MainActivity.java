@@ -130,19 +130,9 @@ public class MainActivity extends AppCompatActivity {
      * Starts activity to show past water reports.
      */
     public void viewAllReports() {
-        Gson gson = new Gson();
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-
-        String json1 = sharedPreferences.getString("waterReport", "");
-        WaterReport obj1 = gson.fromJson(json1, WaterReport.class);
-//        Toast.makeText(this, obj1.toString(), Toast.LENGTH_SHORT).show();
-
-        setContentView(R.layout.activity_view_water_report);
-        TextView reportText = (TextView)findViewById(R.id.report);
-        reportText.setText(obj1.toString());
-
-//        Intent waterReportViewActivity = new Intent(this, ViewWaterReportActivity.class);
-//        startActivity(waterReportViewActivity);
+        
+        Intent waterReportViewActivity = new Intent(this, ViewWaterReportActivity.class);
+        startActivity(waterReportViewActivity);
 
 //        Set<String> strSet = sharedPreferences.getStringSet("waterReport", new HashSet<String>());
 //        for (String json : strSet) {
