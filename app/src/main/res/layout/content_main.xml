@@ -38,6 +38,14 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="View All Reports"
+        android:id="@+id/viewWaterReportsButton"
+        android:onClick="onClickViewReport" />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Logout"
         android:id="@+id/logoutButton"
         android:onClick="logout"/>
