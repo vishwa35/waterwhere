@@ -5,18 +5,22 @@ package com.gitatme.waterwhere.model;
  */
 
 public class WaterReport {
-    public String userID;
-    public String reportID;
-    public String datetime;
-    public String location;
-    public String waterType;
-    public String waterCondition;
+    private String userID;
+    private String reportID;
+    private String datetime;
+    private double latitude;
+    private double longitude;
+    private String waterType;
+    private String waterCondition;
 
-    public WaterReport(String userID, String reportID, String datetime, String location, String waterType, String waterCondition) {
+    public WaterReport(String userID, String reportID, String datetime,
+                       double latitude, double longitude,
+                       String waterType, String waterCondition) {
         this.userID = userID;
         this.reportID = reportID;
         this.datetime = datetime;
-        this.location = location;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.waterType = waterType;
         this.waterCondition = waterCondition;
     }
@@ -45,12 +49,20 @@ public class WaterReport {
         this.datetime = datetime;
     }
 
-    public String getLocation() {
-        return location;
+    public double getLatitude() {
+        return latitude;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.latitude = longitude;
     }
 
     public String getWaterType() {
@@ -71,13 +83,12 @@ public class WaterReport {
 
     @Override
     public String toString() {
-        return "WaterReport{" +
-                "userID='" + userID + '\'' +
-                ", reportID='" + reportID + '\'' +
-                ", datetime='" + datetime + '\'' +
-                ", location='" + location + '\'' +
-                ", waterType='" + waterType + '\'' +
-                ", waterCondition='" + waterCondition + '\'' +
-                '}';
+        return "UserID: " + userID + "\n" +
+                "ReportID: " + reportID + "\n" +
+                "Datetime: " + datetime + "\n" +
+                "Latitude: " + latitude + "\n" +
+                "Longitude: " + longitude + "\n" +
+                "WaterType: " + waterType + "\n" +
+                "WaterCondition: " + waterCondition;
     }
 }

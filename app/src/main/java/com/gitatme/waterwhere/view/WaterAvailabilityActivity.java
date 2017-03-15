@@ -1,15 +1,19 @@
 package com.gitatme.waterwhere.view;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
 import com.gitatme.waterwhere.R;
+import com.gitatme.waterwhere.model.WaterReport;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.Gson;
 
 public class WaterAvailabilityActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -39,9 +43,20 @@ public class WaterAvailabilityActivity extends FragmentActivity implements OnMap
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        Gson gson = new Gson();
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        String json1 = sharedPreferences.getString("waterReport", "");
+        WaterReport report = gson.fromJson(json1, WaterReport.class);
+
+        if (report != null) {
+            LatLng waterSource = new LatLng(report.getLatitude(), report.getLongitude());
+            mMap.addMarker(new MarkerOptions().position(waterSource).title("Water HERE!").snippet(report.toString()));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(waterSource));
+        } else {
+            LatLng waterSource = new LatLng(0, 0);
+            mMap.addMarker(new MarkerOptions().position(waterSource).title("No water reports available"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(waterSource));
+        }
     }
 }

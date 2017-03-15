@@ -68,7 +68,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Location (Lat Long)"
+        android:text="Latitude"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/editTextDate"
         android:layout_marginTop="15dp"/>
@@ -81,14 +81,32 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/editTextDate"
         android:layout_marginTop="15dp"
-        android:id="@+id/editTextLocation" />
+        android:id="@+id/editTextLatitude" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Longitude"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/editTextLatitude"
+        android:layout_marginTop="15dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/editTextLatitude"
+        android:layout_marginTop="15dp"
+        android:id="@+id/editTextLongitude" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Type of Water"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/editTextLocation"
+        android:layout_below="@+id/editTextLongitude"
         android:layout_marginTop="15dp"/>
 
     <Spinner
@@ -97,7 +115,7 @@
         android:layout_height="wrap_content"
         android:entries="@array/water_types"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/editTextLocation"
+        android:layout_below="@+id/editTextLongitude"
         android:layout_marginTop="15dp"/>
 
     <TextView

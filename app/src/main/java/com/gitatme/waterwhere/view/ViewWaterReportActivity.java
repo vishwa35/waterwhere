@@ -24,13 +24,13 @@ public class ViewWaterReportActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         String json1 = sharedPreferences.getString("waterReport", "");
-        WaterReport obj1 = gson.fromJson(json1, WaterReport.class);
+        WaterReport report = gson.fromJson(json1, WaterReport.class);
 //        Toast.makeText(this, obj1.toString(), Toast.LENGTH_SHORT).show();
 
         TextView reportText = (TextView)findViewById(R.id.existingReport);
 
-        if (obj1 != null) {
-            reportText.setText(obj1.getUserID() + " | " + obj1.getDatetime() + " | " + obj1.getLocation());
+        if (report != null) {
+            reportText.setText(report.toString());
         } else {
             reportText.setText("You have not yet added any reports");
         }
