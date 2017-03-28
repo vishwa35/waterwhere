@@ -26,6 +26,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -57,6 +59,7 @@ public class RegistrationFragment extends Fragment {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private DatabaseReference mDatabase;
 
     public RegistrationFragment() {
         // Required empty public constructor
@@ -79,6 +82,7 @@ public class RegistrationFragment extends Fragment {
                 }
             }
         };
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         View view = inflater.inflate(R.layout.fragment_registration, container, false);
         email = (EditText) view.findViewById(R.id.register_edittext_email);
@@ -139,11 +143,26 @@ public class RegistrationFragment extends Fragment {
                                 Toast.makeText(getContext(), "Sorry! We weren't able to register your account.", Toast.LENGTH_LONG).show();
                             }
                         } else {
-                            try {
-                                Snackbar.make(getView(),"Success! Your account is registered!", Snackbar.LENGTH_SHORT).show();
-                            } catch (NullPointerException e) {
-                                Toast.makeText(getContext(), "Success! Your account is registered!", Toast.LENGTH_SHORT).show();
-                            }
+                            FirebaseUser user = mAuth.getCurrentUser();
+
+                            //set user metadata
+                            DatabaseReference thisUser = mDatabase.child("users").child(user.getUid());
+                            thisUser.child("name").setValue(name.getText().toString().trim());
+                            thisUser.child("address").setValue(address.getText().toString().trim());
+                            thisUser.child("phone").setValue(phone.getText().toString().trim());
+                            thisUser.child("type").setValue(type.getSelectedItem().toString());
+                            Long tsLong = System.currentTimeMillis()/1000;
+                            thisUser.child("timestamp").setValue(tsLong.toString());
+
+                            //send confirmation email to the user
+                            user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Toast.makeText(getContext(), "Success! A verification email has been sent.", Toast.LENGTH_SHORT).show();
+                                    Intent dashboard = new Intent(getActivity(), MainActivity.class);
+                                    startActivity(dashboard);
+                                }
+                            });
                         }
                     }
                 });
