@@ -16,6 +16,8 @@ import android.widget.Toast;
 import android.widget.TextView;
 
 import com.gitatme.waterwhere.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
 import android.preference.PreferenceManager;
 import com.gitatme.waterwhere.model.WaterReport;
@@ -30,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     Button showAvailableWaterButton;
     Button showAllReportsButton;
     Button logoutButton;
+
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,9 +79,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //Check if user is logged in, and if not, send them to Onboarding
-        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.shared_pref_code), Context.MODE_PRIVATE);
-        boolean isLoggedIn = sharedPreferences.getBoolean(getString(R.string.shared_pref_loggedin), false);
-        if(!isLoggedIn) {
+//        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.shared_pref_code), Context.MODE_PRIVATE);
+//        boolean isLoggedIn = sharedPreferences.getBoolean(getString(R.string.shared_pref_loggedin), false);
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if(user == null) {
             Intent intent = new Intent(this, OnboardingActivity.class);
             startActivity(intent);
             finish();
@@ -145,8 +151,9 @@ public class MainActivity extends AppCompatActivity {
      * Logs out the user from the system and sets the boolean flag to false
      */
     public void logout() {
-        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.shared_pref_code), Context.MODE_PRIVATE);
-        sharedPreferences.edit().putBoolean(getString(R.string.shared_pref_loggedin), false).apply();
+//        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.shared_pref_code), Context.MODE_PRIVATE);
+//        sharedPreferences.edit().putBoolean(getString(R.string.shared_pref_loggedin), false).apply();
+        FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(this, OnboardingActivity.class);
         startActivity(intent);
         finish();
