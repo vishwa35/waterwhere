@@ -16,6 +16,7 @@ import android.widget.Toast;
 import android.widget.TextView;
 
 import com.gitatme.waterwhere.R;
+import com.gitatme.waterwhere.model.WaterQuality;
 import com.google.gson.Gson;
 import android.preference.PreferenceManager;
 import com.gitatme.waterwhere.model.WaterReport;
@@ -112,7 +113,22 @@ public class MainActivity extends AppCompatActivity {
      * Starts activity to create a new water report.
      */
     public void createWaterReport() {
-        Intent reportIntent = new Intent(this, WaterReportActivity.class);
+        SharedPreferences sharedPreferences1 = getSharedPreferences(getString(R.string.shared_pref_type), Context.MODE_PRIVATE);
+        String type = sharedPreferences1.getString(getString(R.string.shared_pref_type), "");
+        Intent reportIntent;
+        if (type.equalsIgnoreCase("user")) {
+            reportIntent = new Intent(this, WaterReportActivity.class);
+        } else if (type.equals("admin")) {
+            //TODO change to not show button
+            Toast.makeText(this, "Logged in as Admin, you cannot submit reports",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        } else {
+            reportIntent = new Intent(this, WaterPurityReportActivity.class);
+        }
+
+        //Intent reportIntent = new Intent(this, WaterReportActivity.class);
+        //Intent reportIntent = new Intent(this, WaterPurityReportActivity.class);
         final int result = 2;
         startActivityForResult(reportIntent, result);
     }
