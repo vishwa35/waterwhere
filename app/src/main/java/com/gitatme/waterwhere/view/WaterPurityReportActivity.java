@@ -142,10 +142,10 @@ public class WaterPurityReportActivity extends Activity {
                     Gson gson = new Gson();
                     String jsonReport = gson.toJson(waterReport);
                     editor.putString("waterReport", jsonReport);
-                    editor.commit();
+                    editor.apply();
 
                     String json = sharedPreferences.getString("waterReport", "");
-                    if (json != null) {
+                    if (!json.equals("")) {
                         Toast.makeText(this, "Report Added", Toast.LENGTH_SHORT).show();
                     }
 
@@ -169,6 +169,10 @@ public class WaterPurityReportActivity extends Activity {
         }
     }
 
+    /**
+     * Shows the toast for report cancelled and reverts back to MainActivity
+     * @param view
+     */
     public void onClickCancel(View view) {
         //Aditya
         //Send back to Main Activity and notify via toast that changes were canceled

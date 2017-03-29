@@ -29,10 +29,11 @@ public class ViewWaterReportActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_water_report);
         Gson gson = new Gson();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-
+        
         /*LinearLayout linearLayout = (LinearLayout) this.findViewById(R.id.linearLayout);
-        Set<String> list;
-        list = sharedPreferences.getStringSet("waterReport", null);*/
+        Set<String> list = new HashSet<>(5);
+        list = sharedPreferences.getStringSet("waterReport", list);
+        System.out.println("toString: " + list.toString());*/
         /**try {
             list = sharedPreferences.getStringSet("waterReport", set);
         } catch (Exception e) {
@@ -51,6 +52,8 @@ public class ViewWaterReportActivity extends AppCompatActivity {
             }
         } else {
             TextView reportText = new TextView(this);
+            reportText.setText("You have not yet added any reports");
+            linearLayout.addView(reportText);
         }
         for (String s : list) {
             WaterReport report = gson.fromJson(s, WaterQuality.class);

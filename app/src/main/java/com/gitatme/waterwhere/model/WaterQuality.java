@@ -38,6 +38,10 @@ public class WaterQuality extends WaterReport {
     }
 
     @Override
+    /**
+     * Used to view report, returns string form of report. If virus and containment
+     * are -1 (empty submission), it will not show those fields
+     */
     public String toString() {
         if (getVirusPPM() < 0 && getContainmentPPM() < 0) {
             return super.toString();
