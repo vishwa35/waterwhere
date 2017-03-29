@@ -9,10 +9,23 @@ public class WaterQuality extends WaterReport {
     private int virusPPM;
     private int containmentPPM;
 
+    /**
+     *
+     * @param userID username
+     * @param reportID report id
+     * @param datetime date
+     * @param latitude lat
+     * @param longitude long
+     * @param waterType type of water
+     * @param waterCondition condition
+     * default assigns -1 to virus and ocntainment
+     */
     public WaterQuality(String userID, String reportID, String datetime,
                        double latitude, double longitude,
                        String waterType, String waterCondition) {
         super(userID, reportID, datetime, latitude, longitude, waterType, waterCondition);
+        virusPPM = -1;
+        containmentPPM = -1;
 
     }
     public WaterQuality(String userID, String reportID, String datetime,

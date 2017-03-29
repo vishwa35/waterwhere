@@ -71,6 +71,11 @@ public class WaterPurityReportActivity extends Activity {
         reportNumTextView.setText(String.valueOf(Math.abs(name.hashCode())/(r.nextInt(10000))));
     }
 
+    /**
+     * Creates purity report according to worker and higher user type
+     * If that user decides not to input virus AND containment, then it will not be displayed in tostring
+     * Those values (if not inputted) are recorded as -1, an invalid value
+     */
     public void onClickCreateReport() {
         if ((nameTextView.getText().toString().trim().isEmpty())
                 || (datetimeEditText.getText().toString().trim().isEmpty())
