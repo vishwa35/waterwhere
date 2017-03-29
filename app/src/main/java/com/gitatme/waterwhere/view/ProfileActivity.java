@@ -136,7 +136,7 @@ public class ProfileActivity extends Activity {
             sharedPreferences.putString(getString(R.string.shared_pref_phone), phoneEditText.getText().toString());
             sharedPreferences.putString(getString(R.string.shared_pref_type), accountTypeSpinner.getSelectedItem().toString());
 
-            sharedPreferences.commit();
+            sharedPreferences.apply();
 
             //TODO - add option for user to back out even after they click submit changes
 
