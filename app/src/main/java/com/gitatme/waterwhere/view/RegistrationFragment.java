@@ -158,7 +158,9 @@ public class RegistrationFragment extends Fragment {
                             user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    Toast.makeText(getContext(), "Success! A verification email has been sent.", Toast.LENGTH_SHORT).show();
+                                    if (getContext() != null) {
+                                        Toast.makeText(getContext(), "Success! A verification email has been sent.", Toast.LENGTH_SHORT).show();
+                                    }
                                     Intent dashboard = new Intent(getActivity(), MainActivity.class);
                                     startActivity(dashboard);
                                 }
