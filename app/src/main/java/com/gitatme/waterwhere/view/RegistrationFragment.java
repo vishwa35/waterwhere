@@ -1,16 +1,12 @@
 package com.gitatme.waterwhere.view;
 
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
-import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,23 +35,23 @@ import java.util.regex.Pattern;
  */
 public class RegistrationFragment extends Fragment {
 
-    public static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-    EditText email;
-    TextInputLayout emailLayout;
-    EditText pass;
-    TextInputLayout passLayout;
-    EditText passConfirm;
-    TextInputLayout passConfirmLayout;
-    EditText name;
-    TextInputLayout nameLayout;
-    EditText address;
-    TextInputLayout addressLayout;
-    EditText phone;
-    TextInputLayout phoneLayout;
-    Spinner type;
-    Button register;
-    Button cancel;
-    private static ArrayList<User> registeredUsers = new ArrayList<>();
+    private static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
+                    Pattern.CASE_INSENSITIVE);
+    private EditText email;
+    private TextInputLayout emailLayout;
+    private EditText pass;
+    private TextInputLayout passLayout;
+    private EditText passConfirm;
+    private TextInputLayout passConfirmLayout;
+    private EditText name;
+    private TextInputLayout nameLayout;
+    private EditText address;
+    private TextInputLayout addressLayout;
+    private EditText phone;
+    private TextInputLayout phoneLayout;
+    private Spinner type;
+    private static final ArrayList<User> registeredUsers = new ArrayList<>();
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -90,7 +86,8 @@ public class RegistrationFragment extends Fragment {
         pass = (EditText) view.findViewById(R.id.register_edittext_pass);
         passLayout = (TextInputLayout) view.findViewById(R.id.register_textinputlayout_pass);
         passConfirm = (EditText) view.findViewById(R.id.register_edittext_confirmpass);
-        passConfirmLayout = (TextInputLayout) view.findViewById(R.id.register_textinputlayout_confirmpass);
+        passConfirmLayout = (TextInputLayout) view.findViewById(
+                R.id.register_textinputlayout_confirmpass);
         name = (EditText) view.findViewById(R.id.register_edittext_name);
         nameLayout = (TextInputLayout) view.findViewById(R.id.register_textinputlayout_name);
         address = (EditText) view.findViewById(R.id.register_edittext_address);
@@ -98,8 +95,8 @@ public class RegistrationFragment extends Fragment {
         phone = (EditText) view.findViewById(R.id.register_edittext_phone);
         phoneLayout = (TextInputLayout) view.findViewById(R.id.register_textinputlayout_phone);
         type = (Spinner) view.findViewById(R.id.register_spinner_type);
-        register = (Button) view.findViewById(R.id.register_button_signup);
-        cancel = (Button) view.findViewById(R.id.register_button_cancel);
+        Button register = (Button) view.findViewById(R.id.register_button_signup);
+        Button cancel = (Button) view.findViewById(R.id.register_button_cancel);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,29 +121,29 @@ public class RegistrationFragment extends Fragment {
     /**
      * Registers the user with firebase authentication.
      */
-    public void registerUser() {
-//        editor.putString(getString(R.string.shared_pref_email), email.getText().toString().trim());
-//        editor.putString(getString(R.string.shared_pref_pass), pass.getText().toString().trim());
-//        editor.putString(getString(R.string.shared_pref_name), name.getText().toString().trim());
-//        editor.putString(getString(R.string.shared_pref_address), address.getText().toString().trim());
-//        editor.putString(getString(R.string.shared_pref_phone), phone.getText().toString().trim());
-//        editor.putString(getString(R.string.shared_pref_type), type.getSelectedItem().toString());
+    private void registerUser() {
 
-        mAuth.createUserWithEmailAndPassword(email.getText().toString().trim(), pass.getText().toString().trim())
+        mAuth.createUserWithEmailAndPassword(email.getText().toString().trim(),
+                pass.getText().toString().trim())
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (!task.isSuccessful()) {
                             try {
-                                Snackbar.make(getView(),"Sorry! We weren't able to register your account.", Snackbar.LENGTH_LONG).show();
+                                Snackbar.make(getView(),
+                                        "Sorry! We weren't able to register your account.",
+                                        Snackbar.LENGTH_LONG).show();
                             } catch (NullPointerException e) {
-                                Toast.makeText(getContext(), "Sorry! We weren't able to register your account.", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getContext(),
+                                        "Sorry! We weren't able to register your account.",
+                                        Toast.LENGTH_LONG).show();
                             }
                         } else {
                             FirebaseUser user = mAuth.getCurrentUser();
 
                             //set user metadata
-                            DatabaseReference thisUser = mDatabase.child("users").child(user.getUid());
+                            DatabaseReference thisUser =
+                                    mDatabase.child("users").child(user.getUid());
                             thisUser.child("name").setValue(name.getText().toString().trim());
                             thisUser.child("address").setValue(address.getText().toString().trim());
                             thisUser.child("phone").setValue(phone.getText().toString().trim());
@@ -155,13 +152,17 @@ public class RegistrationFragment extends Fragment {
                             thisUser.child("timestamp").setValue(tsLong.toString());
 
                             //send confirmation email to the user
-                            user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            user.sendEmailVerification().addOnCompleteListener(
+                                    new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (getContext() != null) {
-                                        Toast.makeText(getContext(), "Success! A verification email has been sent.", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getContext(),
+                                                "Success! A verification email has been sent.",
+                                                Toast.LENGTH_SHORT).show();
                                     }
-                                    Intent dashboard = new Intent(getActivity(), MainActivity.class);
+                                    Intent dashboard =
+                                            new Intent(getActivity(), MainActivity.class);
                                     startActivity(dashboard);
                                 }
                             });
@@ -175,7 +176,7 @@ public class RegistrationFragment extends Fragment {
      *
      * @return true if all validate, false otherwise
      */
-    public boolean validateFields() {
+    private boolean validateFields() {
         //email
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(email.getText().toString().trim());
         if (email.getText().toString().trim().isEmpty()) {
@@ -210,12 +211,15 @@ public class RegistrationFragment extends Fragment {
 
         //confirm pass
         if (passConfirm.getText().toString().trim().isEmpty()) {
-            passConfirmLayout.setError(getString(R.string.register_textinputlayout_confirmpass_empty));
+            passConfirmLayout.setError(
+                    getString(R.string.register_textinputlayout_confirmpass_empty));
             passConfirm.clearFocus();
             passConfirm.requestFocus();
             return false;
-        } else if (!passConfirm.getText().toString().trim().equals(pass.getText().toString().trim())) {
-            passConfirmLayout.setError(getString(R.string.register_textinputlayout_confirmpass_match));
+        } else if (!passConfirm.getText().toString().trim().equals(
+                pass.getText().toString().trim())) {
+            passConfirmLayout.setError(getString(
+                    R.string.register_textinputlayout_confirmpass_match));
             passConfirm.clearFocus();
             passConfirm.requestFocus();
             return false;
@@ -268,15 +272,20 @@ public class RegistrationFragment extends Fragment {
      */
     private boolean validatePhoneNumber(String phoneNo) {
         //validate phone numbers of format "1234567890"
-        if (phoneNo.matches("\\d{10}")) return true;
-            //validating phone number with -, . or spaces
-        else if(phoneNo.matches("\\d{3}[-\\.\\s]\\d{3}[-\\.\\s]\\d{4}")) return true;
-            //validating phone number with extension length from 3 to 5
-        else if(phoneNo.matches("\\d{3}-\\d{3}-\\d{4}\\s(x|(ext))\\d{3,5}")) return true;
-            //validating phone number where area code is in braces ()
-        else if(phoneNo.matches("\\(\\d{3}\\)-\\d{3}-\\d{4}")) return true;
-            //return false if nothing matches the input
-        else return false;
+        if (phoneNo.matches("\\d{10}")) {
+            return true;
+        }//validating phone number with -, . or spaces
+        else
+//validating phone number with extension length from 3 to 5
+        {
+            return phoneNo.matches(
+                    "\\d{3}[-\\.\\s]\\d{3}[-\\.\\s]\\d{4}")
+                    || phoneNo.matches("\\d{3}-\\d{3}-\\d{4}\\s(x|(ext))\\d{3,5}")
+                    || phoneNo.matches("\\(\\d{3}\\)-\\d{3}-\\d{4}");
+        }
+//validating phone number where area code is in braces ()
+//return false if nothing matches the input
+
 
     }
 

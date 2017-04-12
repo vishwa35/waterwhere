@@ -2,9 +2,6 @@ package com.gitatme.waterwhere.model;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
-/**
- * Created by Shukan Shah on 3/1/2017.
- */
 
 @IgnoreExtraProperties
 public class User {

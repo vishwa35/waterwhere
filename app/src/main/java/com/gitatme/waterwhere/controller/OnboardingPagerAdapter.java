@@ -6,12 +6,8 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.gitatme.waterwhere.view.OnboardingFragment;
 
-/**
- * Created by binitshah on 3/7/17.
- */
 
 public class OnboardingPagerAdapter extends FragmentStatePagerAdapter {
-    private final int NUM_PAGES = 5;
 
     public OnboardingPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
@@ -19,6 +15,7 @@ public class OnboardingPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
+        int NUM_PAGES = 5;
         return NUM_PAGES;
     }
 

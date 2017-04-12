@@ -1,17 +1,14 @@
 package com.gitatme.waterwhere.model;
 
-/**
- * Created by Binit Shah on 3/8/17.
- */
-
 public class WaterReport {
     private String userID;
     private String reportID;
     private String datetime;
     private double latitude;
-    private double longitude;
+    private final double longitude;
     private String waterType;
     private String waterCondition;
+    private boolean flaggedForDanger;
 
     public WaterReport(String userID, String reportID, String datetime,
                        double latitude, double longitude,
@@ -23,6 +20,7 @@ public class WaterReport {
         this.longitude = longitude;
         this.waterType = waterType;
         this.waterCondition = waterCondition;
+        flaggedForDanger = "Waste".equals(waterCondition.toLowerCase().trim());
     }
 
     public String getUserID() {
@@ -79,6 +77,11 @@ public class WaterReport {
 
     public void setWaterCondition(String waterCondition) {
         this.waterCondition = waterCondition;
+        flaggedForDanger = "waste".equals(waterCondition.toLowerCase().trim());
+    }
+
+    public boolean isFlagged() {
+        return flaggedForDanger;
     }
 
     @Override

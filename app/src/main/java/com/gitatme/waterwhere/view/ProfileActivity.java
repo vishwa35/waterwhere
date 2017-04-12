@@ -9,11 +9,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
-
 import com.gitatme.waterwhere.R;
 import com.gitatme.waterwhere.model.User;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,10 +20,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-/**
- * Created by shuka on 3/1/2017.
- */
 
 public class ProfileActivity extends Activity {
 
@@ -38,10 +31,7 @@ public class ProfileActivity extends Activity {
     private EditText phoneEditText;
     private Spinner accountTypeSpinner;
 
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
-    private DatabaseReference mDatabase;
-    User user;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,9 +47,9 @@ public class ProfileActivity extends Activity {
         accountTypeSpinner = (Spinner) findViewById(R.id.spinnerAccountType);
 
         //Firebase
-        mAuth = FirebaseAuth.getInstance();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+        FirebaseAuth.AuthStateListener mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
 
@@ -84,13 +74,13 @@ public class ProfileActivity extends Activity {
                 addressEditText.setText(address);
                 phoneEditText.setText(phone);
 
-                if (accountType.toLowerCase().trim().equals("user")) {
+                if ("user".equals(accountType.toLowerCase().trim())) {
                     accountTypeSpinner.setSelection(0);
-                } else if (accountType.toLowerCase().trim().equals("worker")) {
+                } else if ("worker".equals(accountType.toLowerCase().trim())) {
                     accountTypeSpinner.setSelection(1);
-                } else if (accountType.toLowerCase().trim().equals("manager")) {
+                } else if ("manager".equals(accountType.toLowerCase().trim())) {
                     accountTypeSpinner.setSelection(2);
-                } else if (accountType.toLowerCase().trim().equals("admin")) {
+                } else if ("admin".equals(accountType.toLowerCase().trim())) {
                     accountTypeSpinner.setSelection(3);
                 }
             }
@@ -106,9 +96,8 @@ public class ProfileActivity extends Activity {
      * The changes are discarded if cancel is clicked and an intent is called
      * to go back to the main activity
      *
-     * @param view
      */
-    public void onClickCancel(View view) {
+    public void onClickCancel() {
         Intent goingBack = new Intent();
         goingBack.putExtra("Result", "Cancel");
         setResult(RESULT_OK, goingBack);
@@ -120,9 +109,8 @@ public class ProfileActivity extends Activity {
      * the text fields and spinner have valid inputs and, if so, these changes are
      * committed and the sharedpreferences are updated.
      *
-     * @param view
      */
-    public void onClickSubmit(View view) {
+    public void onClickSubmit() {
         if ((nameEditText.getText().toString().trim().isEmpty())
             || (emailEditText.getText().toString().trim().isEmpty())
                 || (passEditText.getText().toString().trim().isEmpty())
@@ -131,19 +119,26 @@ public class ProfileActivity extends Activity {
                 || (confirmPassEditText.getText().toString().trim().isEmpty())) {
             new AlertDialog.Builder(this)
                     .setTitle("Missing Information")
-                    .setMessage("One or more of the fields were left blank. Please enter the information completely.")
+                    .setMessage(
+                            "One or more of the fields were left blank. " +
+                                    "Please enter the information completely.")
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
                         public void onClick(DialogInterface dialog, int which) {
                             // do nothing
                         }
                     })
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
-        } else if (!passEditText.getText().toString().equals(confirmPassEditText.getText().toString())) {
+        } else if (!passEditText.getText().toString()
+                .equals(confirmPassEditText.getText().toString())) {
             new AlertDialog.Builder(this)
                     .setTitle("Passwords do not match")
-                    .setMessage("The two passwords do not match. Please enter the information again.")
+                    .setMessage(
+                            "The two passwords do not match." +
+                                    " Please enter the information again.")
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
                         public void onClick(DialogInterface dialog, int which) {
                             // do nothing
                         }
@@ -153,8 +148,11 @@ public class ProfileActivity extends Activity {
         } else if (passEditText.getText().toString().length() < 8) {
             new AlertDialog.Builder(this)
                     .setTitle("Passwords is too short")
-                    .setMessage("Your password must be at least 8 characters long. Please reenter a longer password.")
+                    .setMessage(
+                            "Your password must be at least 8 characters long." +
+                                    " Please reenter a longer password.")
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
                         public void onClick(DialogInterface dialog, int which) {
                             // do nothing
                         }
@@ -162,17 +160,26 @@ public class ProfileActivity extends Activity {
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
         } else {
-            SharedPreferences.Editor sharedPreferences = getSharedPreferences(getString(R.string.shared_pref_code), Context.MODE_PRIVATE).edit();
-            sharedPreferences.putString(getString(R.string.shared_pref_name), nameEditText.getText().toString());
-            sharedPreferences.putString(getString(R.string.shared_pref_email), emailEditText.getText().toString());
-            sharedPreferences.putString(getString(R.string.shared_pref_pass), passEditText.getText().toString());
-            sharedPreferences.putString(getString(R.string.shared_pref_address), addressEditText.getText().toString());
-            sharedPreferences.putString(getString(R.string.shared_pref_phone), phoneEditText.getText().toString());
-            sharedPreferences.putString(getString(R.string.shared_pref_type), accountTypeSpinner.getSelectedItem().toString());
+            SharedPreferences.Editor sharedPreferences =
+                    getSharedPreferences(
+                            getString(R.string.shared_pref_code), Context.MODE_PRIVATE).edit();
+            sharedPreferences.putString(
+                    getString(R.string.shared_pref_name), nameEditText.getText().toString());
+            sharedPreferences.putString(
+                    getString(R.string.shared_pref_email), emailEditText.getText().toString());
+            sharedPreferences.putString(
+                    getString(R.string.shared_pref_pass), passEditText.getText().toString());
+            sharedPreferences.putString(
+                    getString(R.string.shared_pref_address), addressEditText.getText().toString());
+            sharedPreferences.putString(
+                    getString(R.string.shared_pref_phone), phoneEditText.getText().toString());
+            sharedPreferences.putString(
+                    getString(R.string.shared_pref_type),
+                    accountTypeSpinner.getSelectedItem().toString());
 
             sharedPreferences.apply();
 
-            //TODO - add option for user to back out even after they click submit changes
+            //add option for user to back out even after they click submit changes
 
             Intent goingBack = new Intent();
             goingBack.putExtra("Result", "Success");

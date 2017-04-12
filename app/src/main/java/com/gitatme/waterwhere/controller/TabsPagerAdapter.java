@@ -6,11 +6,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.gitatme.waterwhere.view.LoginFragment;
 import com.gitatme.waterwhere.view.RegistrationFragment;
-
-/**
- * Created by binitshah on 3/1/17.
- */
-
 public class TabsPagerAdapter extends FragmentPagerAdapter {
 
     public TabsPagerAdapter(FragmentManager fm) {

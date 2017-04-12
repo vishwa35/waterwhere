@@ -11,13 +11,12 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 
 public class WaterAvailabilityActivity extends FragmentActivity implements OnMapReadyCallback {
-
-    private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +40,7 @@ public class WaterAvailabilityActivity extends FragmentActivity implements OnMap
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
+        GoogleMap mMap = googleMap;
 
         Gson gson = new Gson();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -51,11 +50,22 @@ public class WaterAvailabilityActivity extends FragmentActivity implements OnMap
 
         if (report != null) {
             LatLng waterSource = new LatLng(report.getLatitude(), report.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(waterSource).title("Water HERE!").snippet(report.toString()));
+            if (report.isFlagged()) {
+                mMap.addMarker(new MarkerOptions().position(waterSource)
+                        .title("Water HERE!").snippet(report.toString()));
+            } else {
+                mMap.addMarker(new MarkerOptions().position(waterSource)
+                        .title("Water HERE!").snippet(report.toString()).icon(
+                                BitmapDescriptorFactory.defaultMarker(
+                                        BitmapDescriptorFactory.HUE_AZURE)));
+            }
             mMap.moveCamera(CameraUpdateFactory.newLatLng(waterSource));
         } else {
             LatLng waterSource = new LatLng(0, 0);
-            mMap.addMarker(new MarkerOptions().position(waterSource).title("No water reports available"));
+            mMap.addMarker(new MarkerOptions().position(waterSource)
+                    .title("No water reports available").icon(
+                            BitmapDescriptorFactory.defaultMarker(
+                                    BitmapDescriptorFactory.HUE_AZURE)));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(waterSource));
         }
     }

@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="EntryPointsManager">
-    <entry_points version="2.0" />
+    <entry_points version="2.0">
+      <entry_point TYPE="method" FQNAME="com.gitatme.waterwhere.model.User java.lang.String getAccountType()" />
+      <entry_point TYPE="method" FQNAME="com.gitatme.waterwhere.view.OnboardingActivity float lerp(float startValue, float endValue, float f)" />
+      <entry_point TYPE="field" FQNAME="com.gitatme.waterwhere.view.OnboardingFragment position" />
+      <entry_point TYPE="field" FQNAME="com.gitatme.waterwhere.view.ProfileActivity mAuthListener" />
+      <entry_point TYPE="field" FQNAME="com.gitatme.waterwhere.view.ProfileActivity user" />
+      <entry_point TYPE="field" FQNAME="com.gitatme.waterwhere.view.RegistrationFragment registeredUsers" />
+      <entry_point TYPE="method" FQNAME="com.gitatme.waterwhere.model.User java.lang.String getEmail()" />
+      <entry_point TYPE="method" FQNAME="com.gitatme.waterwhere.model.User java.lang.String getName()" />
+      <entry_point TYPE="method" FQNAME="com.gitatme.waterwhere.model.User java.lang.String getPass()" />
+      <entry_point TYPE="method" FQNAME="com.gitatme.waterwhere.model.User java.lang.String getPhone()" />
+      <entry_point TYPE="method" FQNAME="com.gitatme.waterwhere.model.User java.lang.String getAddress()" />
+      <entry_point TYPE="method" FQNAME="com.gitatme.waterwhere.model.WaterReport java.lang.String getUserID()" />
+      <entry_point TYPE="method" FQNAME="com.gitatme.waterwhere.model.WaterReport void setUserID(java.lang.String userID)" />
+      <entry_point TYPE="method" FQNAME="com.gitatme.waterwhere.model.WaterReport java.lang.String getReportID()" />
+      <entry_point TYPE="method" FQNAME="com.gitatme.waterwhere.model.WaterReport void setReportID(java.lang.String reportID)" />
+      <entry_point TYPE="method" FQNAME="com.gitatme.waterwhere.model.WaterReport java.lang.String getDatetime()" />
+      <entry_point TYPE="method" FQNAME="com.gitatme.waterwhere.model.WaterReport void setDatetime(java.lang.String datetime)" />
+      <entry_point TYPE="method" FQNAME="com.gitatme.waterwhere.model.WaterReport void setLatitude(double latitude)" />
+      <entry_point TYPE="method" FQNAME="com.gitatme.waterwhere.model.WaterReport void setLongitude(double longitude)" />
+      <entry_point TYPE="method" FQNAME="com.gitatme.waterwhere.model.WaterReport java.lang.String getWaterType()" />
+      <entry_point TYPE="method" FQNAME="com.gitatme.waterwhere.model.WaterReport void setWaterType(java.lang.String waterType)" />
+      <entry_point TYPE="method" FQNAME="com.gitatme.waterwhere.model.WaterReport java.lang.String getWaterCondition()" />
+    </entry_points>
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="android.support.annotation.Nullable" />
@@ -37,7 +60,7 @@
     <ConfirmationsSetting value="0" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="true" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="true" assert-keyword="true" jdk-15="true" project-jdk-name="1.8 (1)" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

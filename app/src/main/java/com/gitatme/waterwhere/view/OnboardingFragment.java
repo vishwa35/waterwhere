@@ -6,8 +6,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.RelativeLayout;
 
 import com.gitatme.waterwhere.R;
 
@@ -18,12 +16,10 @@ import com.gitatme.waterwhere.R;
 public class OnboardingFragment extends Fragment {
 
 
-    int position;
-
     public OnboardingFragment() {}
 
     public void newInstance(int position){
-        this.position = position;
+        int position1 = position;
     }
 
 
