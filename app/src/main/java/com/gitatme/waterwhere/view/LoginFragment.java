@@ -130,7 +130,7 @@ public class LoginFragment extends Fragment {
      *
      * @return true if all validate, false otherwise
      */
-    private boolean validateFields() {
+    public boolean validateFields() {
         //email
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(email.getText().toString().trim());
         if (email.getText().toString().trim().isEmpty()) {
