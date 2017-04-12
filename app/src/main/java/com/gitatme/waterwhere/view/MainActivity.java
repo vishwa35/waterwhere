@@ -16,7 +16,8 @@ import android.widget.Toast;
 import android.widget.TextView;
 
 import com.gitatme.waterwhere.R;
-import com.gitatme.waterwhere.model.WaterQuality;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
 import android.preference.PreferenceManager;
 import com.gitatme.waterwhere.model.WaterReport;
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     Button showAvailableWaterButton;
     Button showAllReportsButton;
     Button logoutButton;
+
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,9 +79,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //Check if user is logged in, and if not, send them to Onboarding
-        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.shared_pref_code), Context.MODE_PRIVATE);
-        boolean isLoggedIn = sharedPreferences.getBoolean(getString(R.string.shared_pref_loggedin), false);
-        if(!isLoggedIn) {
+//        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.shared_pref_code), Context.MODE_PRIVATE);
+//        boolean isLoggedIn = sharedPreferences.getBoolean(getString(R.string.shared_pref_loggedin), false);
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if(user == null) {
             Intent intent = new Intent(this, OnboardingActivity.class);
             startActivity(intent);
             finish();
@@ -113,22 +118,7 @@ public class MainActivity extends AppCompatActivity {
      * Starts activity to create a new water report.
      */
     public void createWaterReport() {
-        SharedPreferences sharedPreferences1 = getSharedPreferences(getString(R.string.shared_pref_code), Context.MODE_PRIVATE);
-        String type = sharedPreferences1.getString(getString(R.string.shared_pref_type), "");
-        Intent reportIntent;
-        if (type.equalsIgnoreCase("user")) {
-            reportIntent = new Intent(this, WaterReportActivity.class);
-        } else if (type.equalsIgnoreCase("admin")) {
-            //TODO change to not show button
-            Toast.makeText(this, "Logged in as Admin, you cannot submit reports",
-                    Toast.LENGTH_SHORT).show();
-            return;
-        } else {
-            reportIntent = new Intent(this, WaterPurityReportActivity.class);
-        }
-
-        //Intent reportIntent = new Intent(this, WaterReportActivity.class);
-        //Intent reportIntent = new Intent(this, WaterPurityReportActivity.class);
+        Intent reportIntent = new Intent(this, WaterReportActivity.class);
         final int result = 2;
         startActivityForResult(reportIntent, result);
     }
@@ -161,8 +151,9 @@ public class MainActivity extends AppCompatActivity {
      * Logs out the user from the system and sets the boolean flag to false
      */
     public void logout() {
-        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.shared_pref_code), Context.MODE_PRIVATE);
-        sharedPreferences.edit().putBoolean(getString(R.string.shared_pref_loggedin), false).apply();
+//        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.shared_pref_code), Context.MODE_PRIVATE);
+//        sharedPreferences.edit().putBoolean(getString(R.string.shared_pref_loggedin), false).apply();
+        FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(this, OnboardingActivity.class);
         startActivity(intent);
         finish();

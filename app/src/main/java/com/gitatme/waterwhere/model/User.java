@@ -1,9 +1,12 @@
 package com.gitatme.waterwhere.model;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
 /**
  * Created by Shukan Shah on 3/1/2017.
  */
 
+@IgnoreExtraProperties
 public class User {
     private String name;
     private String email;
@@ -11,6 +14,10 @@ public class User {
     private String phone;
     private String address;
     private String accountType;
+
+    public User () {
+
+    }
 
     public User (String name, String email, String phone,
                  String pass, String address, String accountType) {

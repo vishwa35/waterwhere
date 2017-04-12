@@ -7,12 +7,22 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.gitatme.waterwhere.R;
+import com.gitatme.waterwhere.model.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * Created by shuka on 3/1/2017.
@@ -28,6 +38,11 @@ public class ProfileActivity extends Activity {
     private EditText phoneEditText;
     private Spinner accountTypeSpinner;
 
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private DatabaseReference mDatabase;
+    User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,31 +56,50 @@ public class ProfileActivity extends Activity {
         phoneEditText = (EditText) findViewById(R.id.editTextPhone);
         accountTypeSpinner = (Spinner) findViewById(R.id.spinnerAccountType);
 
-        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.shared_pref_code), Context.MODE_PRIVATE);
-        String name = sharedPreferences.getString(getString(R.string.shared_pref_name), "");
-        String email = sharedPreferences.getString(getString(R.string.shared_pref_email), "");
-        String pass = sharedPreferences.getString(getString(R.string.shared_pref_pass), "");
-        String address = sharedPreferences.getString(getString(R.string.shared_pref_address), "");
-        String phone = sharedPreferences.getString(getString(R.string.shared_pref_phone), "");
-        String accountType = sharedPreferences.getString(getString(R.string.shared_pref_type), "");
+        //Firebase
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
 
-            nameEditText.setText(name);
-            emailEditText.setText(email);
-            passEditText.setText(pass);
-            confirmPassEditText.setText(pass);
-            addressEditText.setText(address);
-            phoneEditText.setText(phone);
+            }
+        };
+        final FirebaseUser firebaseUser = mAuth.getCurrentUser();
+        DatabaseReference userRef = mDatabase.child("users").child(firebaseUser.getUid());
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                user = dataSnapshot.getValue(User.class);
+                Log.d("SHIT", dataSnapshot.toString());
 
-            if (accountType.toLowerCase().trim().equals("user")) {
-                accountTypeSpinner.setSelection(0);
-            } else if (accountType.toLowerCase().trim().equals("worker")) {
-                accountTypeSpinner.setSelection(1);
-            } else if (accountType.toLowerCase().trim().equals("manager")) {
-                accountTypeSpinner.setSelection(2);
-            } else if (accountType.toLowerCase().trim().equals("admin")) {
-                accountTypeSpinner.setSelection(3);
+                String name = dataSnapshot.child("name").getValue().toString();
+                String email = firebaseUser.getEmail();
+                String address = dataSnapshot.child("address").getValue().toString();
+                String phone = dataSnapshot.child("phone").getValue().toString();
+                String accountType = dataSnapshot.child("type").getValue().toString();
+
+                nameEditText.setText(name);
+                emailEditText.setText(email);
+                addressEditText.setText(address);
+                phoneEditText.setText(phone);
+
+                if (accountType.toLowerCase().trim().equals("user")) {
+                    accountTypeSpinner.setSelection(0);
+                } else if (accountType.toLowerCase().trim().equals("worker")) {
+                    accountTypeSpinner.setSelection(1);
+                } else if (accountType.toLowerCase().trim().equals("manager")) {
+                    accountTypeSpinner.setSelection(2);
+                } else if (accountType.toLowerCase().trim().equals("admin")) {
+                    accountTypeSpinner.setSelection(3);
+                }
             }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d("SHIT", "Failed");
+            }
+        });
     }
 
     /**
