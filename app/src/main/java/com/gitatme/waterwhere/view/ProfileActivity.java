@@ -177,7 +177,7 @@ public class ProfileActivity extends Activity {
                     getString(R.string.shared_pref_type),
                     accountTypeSpinner.getSelectedItem().toString());
 
-            sharedPreferences.commit();
+            sharedPreferences.apply();
 
             //add option for user to back out even after they click submit changes
 

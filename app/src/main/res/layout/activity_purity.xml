@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text="Create a New Water Report!"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="casual"
+        android:textSize="24sp"
+        android:id="@+id/reportTextView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:textColor="@android:color/holo_purple" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/reportTextView"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/reportTextView"
+        android:layout_marginTop="10dp"
+        android:id="@+id/textName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Report Number"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textName"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textName"
+        android:layout_marginTop="10dp"
+        android:id="@+id/textReportNumber" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date and Time"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textReportNumber"
+        android:layout_marginTop="10dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="datetime"
+        android:ems="10"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textReportNumber"
+        android:layout_marginTop="10dp"
+        android:id="@+id/editTextDate" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Latitude"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/editTextDate"
+        android:layout_marginTop="10dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/editTextDate"
+        android:layout_marginTop="10dp"
+        android:id="@+id/editTextLatitude" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Longitude"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/editTextLatitude"
+        android:layout_marginTop="10dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/editTextLatitude"
+        android:layout_marginTop="10dp"
+        android:id="@+id/editTextLongitude" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Type of Water"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/editTextLongitude"
+        android:layout_marginTop="10dp"/>
+
+    <Spinner
+        android:id="@+id/spinnerWaterType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/water_types"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/editTextLongitude"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Condition of Water"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/spinnerWaterType"
+        android:layout_marginTop="10dp"/>
+
+    <Spinner
+        android:id="@+id/spinnerWaterConditions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/water_conditions"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/spinnerWaterType"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Virus PPM"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/spinnerWaterConditions"
+        android:layout_marginTop="10dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="datetime"
+        android:ems="10"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/spinnerWaterConditions"
+        android:layout_marginTop="10dp"
+        android:id="@+id/editTextVirus" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Containment PPM"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/editTextVirus"
+        android:layout_marginTop="15dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="datetime"
+        android:ems="10"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/editTextVirus"
+        android:layout_marginTop="10dp"
+        android:id="@+id/editTextContainment" />
+
+
+    <Button
+        android:text="Create Report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/createReportButton"
+        android:layout_below="@+id/editTextContainment"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="25dp"
+        android:onClick="onClickCreateReport"/>
+
+    <Button
+        android:text="Cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cancelReportButton"
+        android:layout_below="@+id/editTextContainment"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="25dp"
+        android:onClick="onClickCancel"/>
+
+</RelativeLayout>
