@@ -91,7 +91,7 @@ public class LoginFragment extends Fragment {
         return view;
     }
 
-    private void loginUser() {
+    public void loginUser() {
 
         mAuth.signInWithEmailAndPassword(email.getText().
                 toString().trim(), pass.getText().toString().trim())

@@ -48,7 +48,7 @@ public class WaterReportActivity extends Activity {
         createReportButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickCreateReport();
+                onClickCreateReport(v);
             }
         });
 
@@ -61,7 +61,7 @@ public class WaterReportActivity extends Activity {
         reportNumTextView.setText(String.valueOf(Math.abs(name.hashCode())/(r.nextInt(10000))));
     }
 
-    private void onClickCreateReport() {
+    public void onClickCreateReport(View view) {
         if ((nameTextView.getText().toString().trim().isEmpty())
                 || (datetimeEditText.getText().toString().trim().isEmpty())
                 || (latitudeEditText.getText().toString().trim().isEmpty())
@@ -136,7 +136,7 @@ public class WaterReportActivity extends Activity {
         }
     }
 
-    public void onClickCancel() {
+    public void onClickCancel(View view) {
         //Aditya
         //Send back to Main Activity and notify via toast that changes were canceled
         Toast.makeText(this, "Report Canceled", Toast.LENGTH_SHORT).show();

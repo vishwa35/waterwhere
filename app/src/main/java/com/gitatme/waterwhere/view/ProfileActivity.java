@@ -9,7 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.widget.EditText;
+import android.view.View;import android.widget.EditText;
 import android.widget.Spinner;
 import com.gitatme.waterwhere.R;
 import com.gitatme.waterwhere.model.User;
@@ -97,7 +97,7 @@ public class ProfileActivity extends Activity {
      * to go back to the main activity
      *
      */
-    public void onClickCancel() {
+    public void onClickCancel(View view) {
         Intent goingBack = new Intent();
         goingBack.putExtra("Result", "Cancel");
         setResult(RESULT_OK, goingBack);
@@ -110,7 +110,7 @@ public class ProfileActivity extends Activity {
      * committed and the sharedpreferences are updated.
      *
      */
-    public void onClickSubmit() {
+    public void onClickSubmit(View view) {
         if ((nameEditText.getText().toString().trim().isEmpty())
             || (emailEditText.getText().toString().trim().isEmpty())
                 || (passEditText.getText().toString().trim().isEmpty())
@@ -188,4 +188,5 @@ public class ProfileActivity extends Activity {
 
         }
     }
-}
+
+     }

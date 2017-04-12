@@ -15,8 +15,7 @@ public class OnboardingPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        int NUM_PAGES = 5;
-        return NUM_PAGES;
+        return 5;
     }
 
     @Override
