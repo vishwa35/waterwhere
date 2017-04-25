@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "412287916179",
+    "firebase_url": "https://waterwhere-68934.firebaseio.com",
+    "project_id": "waterwhere-68934",
+    "storage_bucket": "waterwhere-68934.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:412287916179:android:6332eccfda5515d5",
+        "android_client_info": {
+          "package_name": "com.gitatme.waterwhere"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "412287916179-anjrj65jno7grvqe1k582u9uohke40k9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gitatme.waterwhere",
+            "certificate_hash": "c92ab1cecfc9b6e60ad1a95405b32c247cecaf33"
+          }
+        },
+        {
+          "client_id": "412287916179-ngqdeo69ceqhf201dgulhf68pnfghh3p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTbMFWq71nFWr3gt4ccmGRGxCANxFFdbI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id":
+              "412287916179-ngqdeo69ceqhf201dgulhf68pnfghh3p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -22,10 +22,6 @@ import com.google.gson.Gson;
 
 import java.util.Random;
 
-/**
- * Created by shuka on 3/8/2017.
- */
-
 public class WaterReportActivity extends Activity {
 
     private TextView nameTextView;
@@ -35,8 +31,6 @@ public class WaterReportActivity extends Activity {
     private EditText longitudeEditText;
     private Spinner waterTypeSpinner;
     private Spinner waterConditionSpinner;
-
-    private Button createReportButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,30 +44,35 @@ public class WaterReportActivity extends Activity {
         longitudeEditText = (EditText) findViewById(R.id.editTextLongitude);
         waterTypeSpinner = (Spinner) findViewById(R.id.spinnerWaterType);
         waterConditionSpinner = (Spinner) findViewById(R.id.spinnerWaterConditions);
-        createReportButton = (Button) findViewById(R.id.createReportButton);
+        Button createReportButton = (Button) findViewById(R.id.createReportButton);
         createReportButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickCreateReport();
+                onClickCreateReport(v);
             }
         });
 
-        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.shared_pref_code), Context.MODE_PRIVATE);
-        String name = sharedPreferences.getString(getString(R.string.shared_pref_name), "");
+        SharedPreferences sharedPreferences = getSharedPreferences(
+                getString(R.string.shared_pref_code), Context.MODE_PRIVATE);
+        String name = sharedPreferences.getString(
+                getString(R.string.shared_pref_name), "");
         nameTextView.setText(name);
         Random r = new Random();
         reportNumTextView.setText(String.valueOf(Math.abs(name.hashCode())/(r.nextInt(10000))));
     }
 
-    public void onClickCreateReport() {
+    public void onClickCreateReport(View view) {
         if ((nameTextView.getText().toString().trim().isEmpty())
                 || (datetimeEditText.getText().toString().trim().isEmpty())
                 || (latitudeEditText.getText().toString().trim().isEmpty())
                 || (longitudeEditText.getText().toString().trim().isEmpty())) {
             new AlertDialog.Builder(this)
                     .setTitle("Missing Information")
-                    .setMessage("One or more of the fields were left blank. Please enter the information completely.")
+                    .setMessage(
+                            "One or more of the fields were left blank." +
+                                    " Please enter the information completely.")
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
                         public void onClick(DialogInterface dialog, int which) {
                             // do nothing
                         }
@@ -89,10 +88,11 @@ public class WaterReportActivity extends Activity {
                 latitude = Double.parseDouble(latitudeString);
                 longitude = Double.parseDouble(longitudeString);
 
-                if (!((latitude <= 90.0 && latitude >= -90.0)
-                        && (longitude <= 180.0 && longitude >= -180.0))) {
+                if (!(((latitude <= 90.0) && (latitude >= -90.0))
+                        && ((longitude <= 180.0) && (longitude >= -180.0)))) {
                     Toast.makeText(this, "Latitude and Longitude values are out of range " +
-                            "(-90 <= latitude <= 90, -180 <= longitude <= 180)", Toast.LENGTH_SHORT).show();
+                            "(-90 <= latitude <= 90, -180 <= longitude <= 180)",
+                            Toast.LENGTH_SHORT).show();
                 } else {
                     WaterReport waterReport =
                             new WaterReport(
@@ -105,17 +105,16 @@ public class WaterReportActivity extends Activity {
                                     waterConditionSpinner.getSelectedItem().toString());
 
                     //vishwa - store waterReport in sharedpref
-                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+                    SharedPreferences sharedPreferences = PreferenceManager
+                            .getDefaultSharedPreferences(this);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     Gson gson = new Gson();
                     String jsonReport = gson.toJson(waterReport);
                     editor.putString("waterReport", jsonReport);
                     editor.commit();
 
-                    String json = sharedPreferences.getString("waterReport", "");
-                    if (json != null) {
-                        Toast.makeText(this, "Report Added", Toast.LENGTH_SHORT).show();
-                    }
+                    //String json = sharedPreferences.getString("waterReport", "");
+                    Toast.makeText(this, "Report Added", Toast.LENGTH_SHORT).show();
 
                     //code to retreive WaterReport object:
                     //Gson gson = new Gson();
