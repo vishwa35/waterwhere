@@ -22,6 +22,9 @@ import com.google.gson.Gson;
 
 import java.util.Random;
 
+/**
+ * Activity that creates Water Reports
+ */
 public class WaterReportActivity extends Activity {
 
     private TextView nameTextView;
@@ -61,6 +64,10 @@ public class WaterReportActivity extends Activity {
         reportNumTextView.setText(String.valueOf(Math.abs(name.hashCode())/(r.nextInt(10000))));
     }
 
+    /**
+     * data validation of inputted data and creating report
+     * @param view the view its in
+     */
     public void onClickCreateReport(View view) {
         if ((nameTextView.getText().toString().trim().isEmpty())
                 || (datetimeEditText.getText().toString().trim().isEmpty())
@@ -136,6 +143,10 @@ public class WaterReportActivity extends Activity {
         }
     }
 
+    /**
+     * when cancel button is clicked
+     * @param view the view its in
+     */
     public void onClickCancel(View view) {
         //Aditya
         //Send back to Main Activity and notify via toast that changes were canceled

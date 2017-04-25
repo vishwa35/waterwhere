@@ -15,6 +15,9 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.gitatme.waterwhere.R;
 import com.gitatme.waterwhere.controller.OnboardingPagerAdapter;
 
+/**
+ * OnBoarding for the app, shows the intro sequence
+ */
 public class OnboardingActivity extends FragmentActivity {
 
     private ViewPager viewPager;

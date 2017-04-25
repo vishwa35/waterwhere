@@ -21,6 +21,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+/**
+ * Activity that displays the profile and allows editing info
+ */
 public class ProfileActivity extends Activity {
 
     private EditText nameEditText;
@@ -95,7 +98,7 @@ public class ProfileActivity extends Activity {
     /**
      * The changes are discarded if cancel is clicked and an intent is called
      * to go back to the main activity
-     *
+     * @param view view to cancel from
      */
     public void onClickCancel(View view) {
         Intent goingBack = new Intent();
@@ -108,7 +111,7 @@ public class ProfileActivity extends Activity {
      * If the user clicks submit changes, this method is called. It makes sure
      * the text fields and spinner have valid inputs and, if so, these changes are
      * committed and the sharedpreferences are updated.
-     *
+     * @param view view to submit from
      */
     public void onClickSubmit(View view) {
         if ((nameEditText.getText().toString().trim().isEmpty())

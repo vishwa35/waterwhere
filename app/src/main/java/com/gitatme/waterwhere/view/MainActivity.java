@@ -12,6 +12,9 @@ import com.gitatme.waterwhere.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+/**
+ * Main Activity that hold the menu for all the options for a user to do
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override

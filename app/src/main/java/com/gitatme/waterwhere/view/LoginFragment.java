@@ -42,8 +42,6 @@ public class LoginFragment extends Fragment {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
-    public LoginFragment() {}
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -91,6 +89,9 @@ public class LoginFragment extends Fragment {
         return view;
     }
 
+    /**
+     * attempts to log user in with credentials given
+     */
     public void loginUser() {
 
         mAuth.signInWithEmailAndPassword(email.getText().

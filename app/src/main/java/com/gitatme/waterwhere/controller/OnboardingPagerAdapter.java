@@ -6,9 +6,14 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.gitatme.waterwhere.view.OnboardingFragment;
 
-
+/**
+ * Adapter for onboarding page
+ */
 public class OnboardingPagerAdapter extends FragmentStatePagerAdapter {
-
+    /**
+     * constructor for onBoarding
+     * @param fragmentManager the fragment manager
+     */
     public OnboardingPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
     }

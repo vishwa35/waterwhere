@@ -16,6 +16,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 
+/**
+ * Activity that displays locations on Google Maps
+ */
 public class WaterAvailabilityActivity extends FragmentActivity implements OnMapReadyCallback {
 
     @Override
