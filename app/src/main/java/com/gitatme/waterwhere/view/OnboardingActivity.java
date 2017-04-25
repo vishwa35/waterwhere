@@ -52,17 +52,13 @@ public class OnboardingActivity extends FragmentActivity {
         forwardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (pos == 3) {
-                    Intent login = new Intent(getApplicationContext(), LoginActivity.class);
-                    startActivity(login);
-                    finish();
-                } else {
-                    viewPager.setCurrentItem(3, true);
-                }
+                Intent login = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(login);
+                finish();
             }
         });
         onboardingAnimationView = (LottieAnimationView) findViewById(R.id.onboarding_animationview);
-        onboardingAnimationView.setAnimation("v2.json");
+        onboardingAnimationView.setAnimation("WaterWhereGuyv3.json");
         idealOnPage(pos, true);
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -75,13 +71,6 @@ public class OnboardingActivity extends FragmentActivity {
 
             @Override
             public void onPageSelected(int position) {
-                switch (position) {
-                    case 3:
-                        forwardButton.setText(getString(R.string.forward_button_join));
-                        break;
-                    default:
-                        forwardButton.setText(getString(R.string.forward_button_skip));
-                }
                 pos = position;
                 idealOnPage(position, true);
             }
@@ -101,9 +90,9 @@ public class OnboardingActivity extends FragmentActivity {
 //    }
 // --Commented out by Inspection STOP (4/12/2017 12:35 PM)
 
-    private float lerp(float startValue, float endValue, float f) {
-        return startValue + (f * (endValue - startValue));
-    }
+//    private float lerp(float startValue, float endValue, float f) {
+//        return startValue + (f * (endValue - startValue));
+//    }
 
     private void idealOnPage(int position, final boolean forward) {
         final ValueAnimator anim = ValueAnimator.ofFloat(
