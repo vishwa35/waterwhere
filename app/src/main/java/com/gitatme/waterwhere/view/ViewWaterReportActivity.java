@@ -10,6 +10,9 @@ import com.gitatme.waterwhere.R;
 import com.gitatme.waterwhere.model.WaterReport;
 import com.google.gson.Gson;
 
+/**
+ * activity that lets you view the reports
+ */
 public class ViewWaterReportActivity extends AppCompatActivity {
 
     @Override

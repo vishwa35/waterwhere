@@ -9,6 +9,9 @@ import android.os.Bundle;
 import com.gitatme.waterwhere.R;
 import com.gitatme.waterwhere.controller.TabsPagerAdapter;
 
+/**
+ * This activity inflates Login Fragment
+ */
 public class LoginActivity extends AppCompatActivity {
 
 

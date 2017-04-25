@@ -57,6 +57,9 @@ public class RegistrationFragment extends Fragment {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference mDatabase;
 
+    /**
+     * Required empty constructor for firebase
+     */
     public RegistrationFragment() {
         // Required empty public constructor
     }

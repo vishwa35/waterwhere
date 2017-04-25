@@ -11,13 +11,14 @@ import com.gitatme.waterwhere.R;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * A simple {@link Fragment} subclass for onBoarding
  */
 public class OnboardingFragment extends Fragment {
 
-
-    public OnboardingFragment() {}
-
+    /**
+     * Creates new onboarding instance
+     * @param position where to place instance
+     */
     public void newInstance(int position){
         int position1 = position;
     }
