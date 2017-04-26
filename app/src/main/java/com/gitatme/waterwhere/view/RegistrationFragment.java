@@ -156,16 +156,16 @@ public class RegistrationFragment extends Fragment {
                             thisUser.child("address").setValue(address.getText().toString().trim());
                             thisUser.child("phone").setValue(phone.getText().toString().trim());
                             thisUser.child("type").setValue(type.getSelectedItem().toString());
-                            Long tsLong = System.currentTimeMillis()/1000;
-                            thisUser.child("timestamp").setValue(tsLong.toString());
+//                            Long tsLong = System.currentTimeMillis()/1000;
+//                            thisUser.child("timestamp").setValue(tsLong.toString());
 
                             //send confirmation email to the user
                             user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    if (getContext() != null) {
-                                        Toast.makeText(getContext(), "Success! A verification email has been sent.", Toast.LENGTH_SHORT).show();
-                                    }
+//                                    if (getContext() != null) {
+//                                        Toast.makeText(getContext(), "Success! A verification email has been sent.", Toast.LENGTH_SHORT).show();
+//                                    }
                                     Intent dashboard = new Intent(getActivity(), MainActivity.class);
                                     startActivity(dashboard);
                                 }

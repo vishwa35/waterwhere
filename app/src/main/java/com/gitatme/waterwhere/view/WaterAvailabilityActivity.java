@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
 import com.gitatme.waterwhere.R;
+import com.gitatme.waterwhere.model.ReportList;
 import com.gitatme.waterwhere.model.WaterReport;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -15,9 +16,12 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 
+import java.util.List;
+
 public class WaterAvailabilityActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private List<WaterReport> reports;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,21 +46,34 @@ public class WaterAvailabilityActivity extends FragmentActivity implements OnMap
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        reports = ReportList.getReports();
 
-        Gson gson = new Gson();
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        Gson gson = new Gson();
+//        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//
+//        String json1 = sharedPreferences.getString("waterReport", "");
+//        WaterReport report = gson.fromJson(json1, WaterReport.class);
 
-        String json1 = sharedPreferences.getString("waterReport", "");
-        WaterReport report = gson.fromJson(json1, WaterReport.class);
-
-        if (report != null) {
-            LatLng waterSource = new LatLng(report.getLatitude(), report.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(waterSource).title("Water HERE!").snippet(report.toString()));
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(waterSource));
-        } else {
+        if (reports == null) {
             LatLng waterSource = new LatLng(0, 0);
             mMap.addMarker(new MarkerOptions().position(waterSource).title("No water reports available"));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(waterSource));
+        } else {
+            for (WaterReport r: reports) {
+                LatLng waterSource = new LatLng(r.getLatitude(), r.getLongitude());
+                mMap.addMarker(new MarkerOptions().position(waterSource).title("Water HERE!").snippet(r.toString()));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(waterSource));
+            }
         }
+
+//        if (report != null) {
+//            LatLng waterSource = new LatLng(report.getLatitude(), report.getLongitude());
+//            mMap.addMarker(new MarkerOptions().position(waterSource).title("Water HERE!").snippet(report.toString()));
+//            mMap.moveCamera(CameraUpdateFactory.newLatLng(waterSource));
+//        } else {
+//            LatLng waterSource = new LatLng(0, 0);
+//            mMap.addMarker(new MarkerOptions().position(waterSource).title("No water reports available"));
+//            mMap.moveCamera(CameraUpdateFactory.newLatLng(waterSource));
+//        }
     }
 }
