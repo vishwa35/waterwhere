@@ -24,6 +24,7 @@ public class WaterReport {
         this.waterType = waterType;
         this.waterCondition = waterCondition;
     }
+    public WaterReport() {}
 
     public String getUserID() {
         return userID;

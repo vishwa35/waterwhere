@@ -12,17 +12,28 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gitatme.waterwhere.R;
+import com.gitatme.waterwhere.model.ReportList;
 import com.gitatme.waterwhere.model.User;
+import com.gitatme.waterwhere.model.WaterReport;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by shuka on 3/1/2017.
@@ -31,7 +42,8 @@ import com.google.firebase.database.ValueEventListener;
 public class ProfileActivity extends Activity {
 
     private EditText nameEditText;
-    private EditText emailEditText;
+    private TextView emailTextView;
+    private EditText oldpassEditText;
     private EditText passEditText;
     private EditText confirmPassEditText;
     private EditText addressEditText;
@@ -49,14 +61,15 @@ public class ProfileActivity extends Activity {
         setContentView(R.layout.activity_profile);
 
         nameEditText = (EditText) findViewById(R.id.editTextName);
-        emailEditText = (EditText) findViewById(R.id.editTextEmail);
+        emailTextView = (TextView) findViewById(R.id.textViewEmail);
+        oldpassEditText = (EditText) findViewById(R.id.editTextOldPass);
         passEditText = (EditText) findViewById(R.id.editTextPass);
         confirmPassEditText = (EditText) findViewById(R.id.editTextConfirmPass);
         addressEditText = (EditText) findViewById(R.id.editTextAddress);
         phoneEditText = (EditText) findViewById(R.id.editTextPhone);
         accountTypeSpinner = (Spinner) findViewById(R.id.spinnerAccountType);
 
-        //Firebase
+        //FireBase
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -80,7 +93,7 @@ public class ProfileActivity extends Activity {
                 String accountType = dataSnapshot.child("type").getValue().toString();
 
                 nameEditText.setText(name);
-                emailEditText.setText(email);
+                emailTextView.setText(email);
                 addressEditText.setText(address);
                 phoneEditText.setText(phone);
 
@@ -124,7 +137,7 @@ public class ProfileActivity extends Activity {
      */
     public void onClickSubmit(View view) {
         if ((nameEditText.getText().toString().trim().isEmpty())
-            || (emailEditText.getText().toString().trim().isEmpty())
+                || (oldpassEditText.getText().toString().trim().isEmpty())
                 || (passEditText.getText().toString().trim().isEmpty())
                 || (addressEditText.getText().toString().trim().isEmpty())
                 || (phoneEditText.getText().toString().trim().isEmpty())
@@ -162,15 +175,43 @@ public class ProfileActivity extends Activity {
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
         } else {
-            SharedPreferences.Editor sharedPreferences = getSharedPreferences(getString(R.string.shared_pref_code), Context.MODE_PRIVATE).edit();
-            sharedPreferences.putString(getString(R.string.shared_pref_name), nameEditText.getText().toString());
-            sharedPreferences.putString(getString(R.string.shared_pref_email), emailEditText.getText().toString());
-            sharedPreferences.putString(getString(R.string.shared_pref_pass), passEditText.getText().toString());
-            sharedPreferences.putString(getString(R.string.shared_pref_address), addressEditText.getText().toString());
-            sharedPreferences.putString(getString(R.string.shared_pref_phone), phoneEditText.getText().toString());
-            sharedPreferences.putString(getString(R.string.shared_pref_type), accountTypeSpinner.getSelectedItem().toString());
+            final FirebaseUser user = mAuth.getCurrentUser();
+            final String newPass = passEditText.getText().toString().trim();
+            String oldPass = oldpassEditText.getText().toString().trim();
+            AuthCredential credential = EmailAuthProvider.getCredential(mAuth.getCurrentUser().getEmail(), oldPass);
+            user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        user.updatePassword(newPass).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Log.d(TAG, "Password updated");
+                                } else {
+                                    Log.d(TAG, "Error password not updated");
+                                }
+                            }
+                        });
+                    } else {
+                        Log.d(TAG, "Error auth failed");
+                    }
+                }
+            });
 
-            sharedPreferences.commit();
+            //set user metadata
+            DatabaseReference thisUser = mDatabase.child("users").child(user.getUid());
+
+            UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder().setDisplayName(nameEditText.getText().toString().trim()).build();
+            user.updateProfile(profileChangeRequest);
+
+            profileChangeRequest = new UserProfileChangeRequest.Builder().setDisplayName(nameEditText.getText().toString().trim()).build();
+            user.updateProfile(profileChangeRequest);
+
+            thisUser.child("name").setValue(nameEditText.getText().toString().trim());
+            thisUser.child("address").setValue(addressEditText.getText().toString().trim());
+            thisUser.child("phone").setValue(phoneEditText.getText().toString().trim());
+            thisUser.child("type").setValue(accountTypeSpinner.getSelectedItem().toString());
 
             //TODO - add option for user to back out even after they click submit changes
 

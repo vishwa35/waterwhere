@@ -1,6 +1,7 @@
 package com.gitatme.waterwhere.view;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,6 +27,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -56,7 +58,6 @@ public class RegistrationFragment extends Fragment {
     Button register;
     Button cancel;
     private static ArrayList<User> registeredUsers = new ArrayList<>();
-
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference mDatabase;
@@ -147,6 +148,10 @@ public class RegistrationFragment extends Fragment {
 
                             //set user metadata
                             DatabaseReference thisUser = mDatabase.child("users").child(user.getUid());
+
+                            UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder().setDisplayName(name.getText().toString().trim()).build();
+                            user.updateProfile(profileChangeRequest);
+
                             thisUser.child("name").setValue(name.getText().toString().trim());
                             thisUser.child("address").setValue(address.getText().toString().trim());
                             thisUser.child("phone").setValue(phone.getText().toString().trim());

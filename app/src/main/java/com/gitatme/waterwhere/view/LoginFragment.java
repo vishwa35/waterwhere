@@ -46,7 +46,7 @@ public class LoginFragment extends Fragment {
     Button login;
     Button cancel;
 
-    //Firebase
+    //FireBase
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
@@ -56,7 +56,7 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //Firebase
+        //FireBase
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -64,8 +64,8 @@ public class LoginFragment extends Fragment {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     //logged in - send to main activity
-                    Intent mainactivity = new Intent(getActivity(), MainActivity.class);
-                    startActivity(mainactivity);
+                    Intent mainActivity = new Intent(getActivity(), MainActivity.class);
+                    startActivity(mainActivity);
                     getActivity().finish();
                 }
             }
@@ -82,8 +82,8 @@ public class LoginFragment extends Fragment {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent onboarding = new Intent(getActivity(), OnboardingActivity.class);
-                startActivity(onboarding);
+                Intent onBoarding = new Intent(getActivity(), OnboardingActivity.class);
+                startActivity(onBoarding);
                 getActivity().finish();
             }
         });

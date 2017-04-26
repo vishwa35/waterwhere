@@ -17,8 +17,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gitatme.waterwhere.R;
+import com.gitatme.waterwhere.model.ReportList;
 import com.gitatme.waterwhere.model.WaterReport;
+import com.google.firebase.database.DatabaseError;
 import com.google.gson.Gson;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Random;
 
@@ -35,14 +41,21 @@ public class WaterReportActivity extends Activity {
     private EditText longitudeEditText;
     private Spinner waterTypeSpinner;
     private Spinner waterConditionSpinner;
+    private static boolean success = false;
 
+    public static boolean getSuc() {
+        return success;
+    }
     private Button createReportButton;
+
+    FirebaseAuth mAuth;
+    DatabaseReference dbRef;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report);
-
+        success = false;
         nameTextView = (TextView) findViewById(R.id.textName);
         reportNumTextView = (TextView) findViewById(R.id.textReportNumber);
         datetimeEditText = (EditText) findViewById(R.id.editTextDate);
@@ -59,10 +72,12 @@ public class WaterReportActivity extends Activity {
         });
 
         SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.shared_pref_code), Context.MODE_PRIVATE);
-        String name = sharedPreferences.getString(getString(R.string.shared_pref_name), "");
+        String name = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
         nameTextView.setText(name);
         Random r = new Random();
         reportNumTextView.setText(String.valueOf(Math.abs(name.hashCode())/(r.nextInt(10000))));
+
+        dbRef = FirebaseDatabase.getInstance().getReference();
     }
 
     public void onClickCreateReport() {
@@ -93,8 +108,9 @@ public class WaterReportActivity extends Activity {
                         && (longitude <= 180.0 && longitude >= -180.0))) {
                     Toast.makeText(this, "Latitude and Longitude values are out of range " +
                             "(-90 <= latitude <= 90, -180 <= longitude <= 180)", Toast.LENGTH_SHORT).show();
+                    success = false;
                 } else {
-                    WaterReport waterReport =
+                    final WaterReport waterReport =
                             new WaterReport(
                                     nameTextView.getText().toString(),
                                     reportNumTextView.getText().toString(),
@@ -103,24 +119,21 @@ public class WaterReportActivity extends Activity {
                                     longitude,
                                     waterTypeSpinner.getSelectedItem().toString(),
                                     waterConditionSpinner.getSelectedItem().toString());
+                    success = true;
 
-                    //vishwa - store waterReport in sharedpref
-                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    Gson gson = new Gson();
-                    String jsonReport = gson.toJson(waterReport);
-                    editor.putString("waterReport", jsonReport);
-                    editor.commit();
+                    final Context context = this;
 
-                    String json = sharedPreferences.getString("waterReport", "");
-                    if (json != null) {
-                        Toast.makeText(this, "Report Added", Toast.LENGTH_SHORT).show();
-                    }
+                    dbRef.child("waterReport").push().setValue(waterReport, new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                            if (databaseError != null) {
+                                Toast.makeText(context, "Report failed to save", Toast.LENGTH_SHORT).show();;
+                            } else {
+                                Toast.makeText(context, "Report Added", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
 
-                    //code to retreive WaterReport object:
-                    //Gson gson = new Gson();
-                    //String json = sharedPreferences.getString("waterReport", "");
-                    //WaterReport obj = gson.fromJson(json, WaterReport.class);
 
                     Intent mainActivity = new Intent(this, MainActivity.class);
                     startActivity(mainActivity);

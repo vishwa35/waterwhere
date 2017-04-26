@@ -61,7 +61,7 @@
                 android:layout_below="@+id/editTextName"
                 android:layout_marginTop="10dp"/>
 
-            <EditText
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
@@ -69,14 +69,14 @@
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/editTextName"
                 android:layout_marginTop="10dp"
-                android:id="@+id/editTextEmail" />
+                android:id="@+id/textViewEmail" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Password"
+                android:text="Old Password"
                 android:layout_alignParentLeft="true"
-                android:layout_below="@+id/editTextEmail"
+                android:layout_below="@+id/textViewEmail"
                 android:layout_marginTop="10dp"/>
 
             <EditText
@@ -85,7 +85,25 @@
                 android:inputType="textPassword"
                 android:ems="10"
                 android:layout_alignParentRight="true"
-                android:layout_below="@+id/editTextEmail"
+                android:layout_below="@+id/textViewEmail"
+                android:layout_marginTop="10dp"
+                android:id="@+id/editTextOldPass" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Password"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/editTextOldPass"
+                android:layout_marginTop="10dp"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/editTextOldPass"
                 android:layout_marginTop="10dp"
                 android:id="@+id/editTextPass" />
 
