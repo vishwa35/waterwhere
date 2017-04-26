@@ -67,7 +67,7 @@ public class OnboardingActivity extends FragmentActivity {
             }
         });
         onboardingAnimationView = (LottieAnimationView) findViewById(R.id.onboarding_animationview);
-        onboardingAnimationView.setAnimation("v2.json");
+        onboardingAnimationView.setAnimation("WaterWhereGuyv3.json");
         idealOnPage(pos, true);
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
